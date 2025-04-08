@@ -1,0 +1,56 @@
+{
+  "Desktop": {
+    "Device": {
+      "$value": "desktop",
+      "$type": "text"
+    },
+    "Device Width": {
+      "$value": "75rem",
+      "$type": "dimension"
+    },
+    "Root Font Size": {
+      "$value": "{Scale 03}",
+      "$type": "dimension"
+    },
+    "Scale": {
+      "$value": "0.0625rem",
+      "$type": "dimension"
+    }
+  },
+  "Mobile": {
+    "Device": {
+      "$value": "mobile",
+      "$type": "text"
+    },
+    "Device Width": {
+      "$value": "23.4375rem",
+      "$type": "dimension"
+    },
+    "Root Font Size": {
+      "$value": "{Scale 03}",
+      "$type": "dimension"
+    },
+    "Scale": {
+      "$value": "0.078125rem",
+      "$type": "dimension"
+    }
+  },
+  "Tablet": {
+    "Device": {
+      "$value": "tablet",
+      "$type": "text"
+    },
+    "Device Width": {
+      "$value": "48rem",
+      "$type": "dimension"
+    },
+    "Root Font Size": {
+      "$value": "{Scale 03}",
+      "$type": "dimension"
+    },
+    "Scale": {
+      "$value": "0.0625rem",
+      "$type": "dimension"
+    }
+  }
+}
