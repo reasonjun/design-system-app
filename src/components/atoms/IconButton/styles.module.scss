@@ -1,0 +1,79 @@
+@use '../../../style-dictionary-dist/variables.scss';
+
+.module {
+  border: none;
+  border-radius: #{variables.$radius-full};
+
+  &.primary,
+  &.neutral,
+  &.subtle {
+    &:disabled {
+      background-color: #{variables.$color-background-disabled-default};
+      cursor: not-allowed;
+    }
+  }
+
+  &.primary {
+    color: #{variables.$color-icon-brand-on-brand};
+    background-color: #{variables.$color-background-brand-primary};
+
+    &:not(:disabled):hover {
+      background-color: #{variables.$color-background-brand-primary-hover};
+    }
+  }
+
+  &.neutral {
+    color: #{variables.$color-icon-neutral-default};
+    background-color: #{variables.$color-background-brand-secondary};
+    border: #{variables.$stroke-border} solid #{variables.$color-border-neutral-tertiary};
+
+    &:not(:disabled):hover {
+      background-color: #{variables.$color-background-brand-secondary-hover};
+    }
+  }
+
+  &.subtle {
+    color: #{variables.$color-icon-default-primary};
+    background-color: transparent;
+
+    &:not(:disabled):hover {
+      background-color: #{variables.$color-background-default-primary-hover};
+    }
+  }
+
+  &.medium {
+    min-width: #{variables.$icon-medium};
+    min-height: #{variables.$icon-medium};
+    padding: #{variables.$space-300};
+  }
+
+  &.small {
+    min-width: #{variables.$icon-small};
+    min-height: #{variables.$icon-small};
+    padding: #{variables.$space-200};
+  }
+
+  svg,
+  svg * {
+    fill: currentColor;
+  }
+
+  // TODO: utilities 파일로 이동
+  .visually-hidden,
+  .visually-hidden-focusable:not(:focus):not(:focus-within) {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  // TODO: utilities 파일로 이동
+  .visually-hidden:not(caption),
+  .visually-hidden-focusable:not(:focus):not(:focus-within):not(caption) {
+    position: absolute;
+  }
+}
