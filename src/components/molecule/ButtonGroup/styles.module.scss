@@ -1,0 +1,27 @@
+@use '../../../style-dictionary-dist/variables.scss';
+
+.module {
+  display: flex;
+  gap: #{variables.$space-400};
+
+  &.start {
+    justify-content: flex-start;
+  }
+
+  &.end {
+    justify-content: flex-end;
+  }
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.justify {
+    justify-content: space-between;
+  }
+
+  &.stack {
+    flex-direction: column;
+    gap: 8px; /* 세로 스택 시 간격 */
+  }
+}
