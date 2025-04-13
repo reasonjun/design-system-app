@@ -12,6 +12,10 @@ export interface ChoiceFieldProps {
   disabled?: boolean;
   indeterminate?: boolean; // checkbox only
   id?: string;
+  name?: string;
+  checked?: boolean;
+  value?: string | number;
+  onChange?: (e?: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const ChoiceField = ({
@@ -21,6 +25,10 @@ export const ChoiceField = ({
   disabled,
   indeterminate,
   id,
+  name,
+  checked,
+  value,
+  onChange,
   ...props
 }: ChoiceFieldProps) => {
   const generatedId = useId();
@@ -34,6 +42,10 @@ export const ChoiceField = ({
         label={label}
         disabled={disabled}
         indeterminate={type === "checkbox" ? indeterminate : undefined}
+        name={name}
+        checked={checked}
+        value={value}
+        onChange={onChange}
         {...props}
       />
       <div>

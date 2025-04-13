@@ -1,4 +1,4 @@
-import { Ref } from "react";
+import { ChangeEvent, Ref } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
@@ -11,7 +11,7 @@ export interface InputProps {
   id?: string;
   checked?: boolean;
   value?: string | number;
-  onChange?: () => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   ref?: Ref<HTMLInputElement>;
 }
 
