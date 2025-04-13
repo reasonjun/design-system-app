@@ -1,0 +1,19 @@
+@use '../../../style-dictionary-dist/variables.scss';
+
+.module {
+  display: flex;
+  gap: #{variables.$space-100};
+}
+
+.label {
+  color: #{variables.$color-text-default-primary};
+}
+
+.description {
+  color: #{variables.$color-text-default-secondary};
+}
+
+input:disabled + div .label,
+input:disabled + div .description {
+  color: #{variables.$color-text-disabled-primary};
+}
