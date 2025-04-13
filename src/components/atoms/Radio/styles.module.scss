@@ -1,0 +1,39 @@
+@use '../../../style-dictionary-dist/variables.scss';
+
+.module {
+  appearance: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: #{variables.$depth-400};
+  height: #{variables.$depth-400};
+  background-color: #{variables.$color-background-default-primary};
+  border: #{variables.$stroke-border} solid #{variables.$color-border-brand-primary};
+  border-radius: #{variables.$radius-full};
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #{variables.$color-border-brand-primary};
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:checked::after {
+    transform: scale(1);
+  }
+
+  &:disabled {
+    background-color: #{variables.$color-background-disabled-default};
+    border-color: #{variables.$color-border-disabled-default};
+    cursor: not-allowed;
+
+    &::after {
+      background-color: #{variables.$color-icon-disabled-default};
+    }
+  }
+}
