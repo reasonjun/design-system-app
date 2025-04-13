@@ -1,0 +1,61 @@
+@use '../../../style-dictionary-dist/variables.scss';
+
+.module {
+  appearance: none;
+  width: #{variables.$depth-400};
+  height: #{variables.$depth-400};
+  background-color: #{variables.$color-background-default-primary};
+  border: #{variables.$stroke-border} solid #{variables.$color-border-brand-primary};
+  border-radius: #{variables.$radius-100};
+  position: relative;
+  cursor: pointer;
+
+  &:checked {
+    background-color: #{variables.$color-background-brand-primary};
+    border-color: #{variables.$color-background-brand-primary};
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 4px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: translate(-50%, -60%) rotate(45deg);
+    }
+  }
+
+  &:disabled {
+    background-color: #{variables.$color-background-disabled-default};
+    border-color: #{variables.$color-border-disabled-default};
+    cursor: not-allowed;
+
+    &::after {
+      border-color: #{variables.$color-icon-disabled-on-disabled};
+    }
+  }
+
+  &:indeterminate {
+    background-color: #{variables.$color-background-brand-primary};
+    border-color: #{variables.$color-background-brand-primary};
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 2px;
+      background-color: white;
+      transform: translate(-50%, -50%);
+    }
+
+    &:disabled {
+      &::after {
+        background-color: #{variables.$color-icon-disabled-on-disabled};
+      }
+    }
+  }
+}
