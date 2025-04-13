@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ChoiceField } from ".";
-import { Button } from "../../atoms/Button";
 
 const meta = {
   title: "Molecule/ChoiceField",
