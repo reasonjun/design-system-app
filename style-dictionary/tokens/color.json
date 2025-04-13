@@ -660,6 +660,172 @@
         }
       }
     },
+    "Text": {
+      "Positive": {
+        "Default": {
+          "$value": "{color.base.Green.800}",
+          "$type": "color"
+        },
+        "Secondary": {
+          "$value": "{color.base.Green.600}",
+          "$type": "color"
+        },
+        "Tertiary": {
+          "$value": "{color.base.Green.500}",
+          "$type": "color"
+        },
+        "On Positive": {
+          "$value": "{color.base.Green.100}",
+          "$type": "color"
+        },
+        "On Positive Secondary": {
+          "$value": "{color.base.Green.800}",
+          "$type": "color"
+        },
+        "On Positive Tertiary": {
+          "$value": "{color.base.Green.800}",
+          "$type": "color"
+        }
+      },
+      "Warning": {
+        "Default": {
+          "$value": "{color.base.Yellow.900}",
+          "$type": "color"
+        },
+        "Secondary": {
+          "$value": "{color.base.Yellow.700}",
+          "$type": "color"
+        },
+        "Tertiary": {
+          "$value": "{color.base.Yellow.600}",
+          "$type": "color"
+        },
+        "On Warning": {
+          "$value": "{color.base.Yellow.1000}",
+          "$type": "color"
+        },
+        "On Warning Secondary": {
+          "$value": "{color.base.Yellow.800}",
+          "$type": "color"
+        },
+        "On Warning Tertiary": {
+          "$value": "{color.base.Yellow.900}",
+          "$type": "color"
+        }
+      },
+      "Danger": {
+        "Default": {
+          "$value": "{color.base.Red.600}",
+          "$type": "color"
+        },
+        "Secondary": {
+          "$value": "{color.base.Red.500}",
+          "$type": "color"
+        },
+        "Tertiary": {
+          "$value": "{color.base.Red.400}",
+          "$type": "color"
+        },
+        "On Danger": {
+          "$value": "{color.base.Red.100}",
+          "$type": "color"
+        },
+        "On Danger Secondary": {
+          "$value": "{color.base.Red.700}",
+          "$type": "color"
+        },
+        "On Danger Tertiary": {
+          "$value": "{color.base.Red.700}",
+          "$type": "color"
+        }
+      },
+      "Utilities": {
+        "Text On Overlay": {
+          "$value": "{color.base.Black.1000}",
+          "$type": "color"
+        },
+        "Text On Measurement": {
+          "$value": "{color.base.Pink.800}",
+          "$type": "color"
+        }
+      },
+      "Neutral": {
+        "Primary": {
+          "$value": "{color.base.Gray.800}",
+          "$type": "color"
+        },
+        "Secondary": {
+          "$value": "{color.base.Gray.600}",
+          "$type": "color"
+        },
+        "Tertiary": {
+          "$value": "{color.base.Gray.500}",
+          "$type": "color"
+        },
+        "On Neutral": {
+          "$value": "{color.base.Gray.50}",
+          "$type": "color"
+        },
+        "On Neutral Secondary": {
+          "$value": "{color.base.Gray.800}",
+          "$type": "color"
+        },
+        "On Neutral Tertiary": {
+          "$value": "{color.base.Gray.700}",
+          "$type": "color"
+        }
+      },
+      "Default": {
+        "Primary": {
+          "$value": "{color.base.Black.1000}",
+          "$type": "color"
+        },
+        "Secondary": {
+          "$value": "{color.base.Gray.500}",
+          "$type": "color"
+        },
+        "Tertiary": {
+          "$value": "{color.base.Gray.400}",
+          "$type": "color"
+        }
+      },
+      "Disabled": {
+        "Primary": {
+          "$value": "{color.base.Black.300}",
+          "$type": "color"
+        },
+        "On Disabled": {
+          "$value": "{color.base.Black.200}",
+          "$type": "color"
+        }
+      },
+      "Brand": {
+        "Primary": {
+          "$value": "{color.base.Brand.600}",
+          "$type": "color"
+        },
+        "Secondary": {
+          "$value": "{color.base.Brand.700}",
+          "$type": "color"
+        },
+        "Tertiary": {
+          "$value": "{color.base.Brand.900}",
+          "$type": "color"
+        },
+        "On Brand": {
+          "$value": "{color.base.White.1000}",
+          "$type": "color"
+        },
+        "On Brand Secondary": {
+          "$value": "{color.base.Black.1000}",
+          "$type": "color"
+        },
+        "On Brand Tertiary": {
+          "$value": "{color.base.Black.1000}",
+          "$type": "color"
+        }
+      }
+    },
     "Icon": {
       "Default": {
         "Primary": {
