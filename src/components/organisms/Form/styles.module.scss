@@ -1,0 +1,123 @@
+@use '../../../style-dictionary-dist/variables.scss';
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: #{variables.$space-600};
+  width: 100%;
+  background-color: #{variables.$color-background-default-primary};
+  border: #{variables.$stroke-border} solid #{variables.$color-border-default-primary};
+  border-radius: #{variables.$radius-200};
+  padding: #{variables.$space-600};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+      color: #{variables.$color-text-default-primary};
+    }
+
+    .description {
+      color: #{variables.$color-text-default-secondary};
+      margin: 0;
+      font-size: 0.875rem;
+    }
+  }
+
+  .fields {
+    display: flex;
+    flex-direction: column;
+    gap: #{variables.$space-600};
+  }
+
+  .actions-wrapper {
+    margin-top: #{variables.$space-600};
+  }
+
+
+  &.submitting {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 0.5rem;
+
+    .loading-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: #e2733a;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite ease-in-out;
+
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+    }
+  }
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: #{variables.$space-600};
+  padding: 1.25rem;
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+  border: #{variables.$stroke-border} solid #e5e7eb;
+  box-sizing: border-box;
+
+  .title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: #111827;
+  }
+
+  .description {
+    color: #6b7280;
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: #{variables.$space-600};
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: #{variables.$space-600};
+  justify-content: center;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
