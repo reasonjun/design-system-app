@@ -1,0 +1,6 @@
+@use '../../../style-dictionary-dist/variables';
+
+.module {
+  font-size: 1.2rem;
+  color: #{variables.$color-text-default-secondary};
+}
