@@ -3,6 +3,8 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 import { Input, InputProps } from "../../atoms/Input";
+import { ErrorMessage } from "../../atoms/ErrorMessage";
+import { DescriptionMessage } from "../../atoms/DescriptionMessage";
 
 export interface TextFieldProps extends Omit<InputProps, "id" | "aria-label"> {
   label: string;
@@ -53,20 +55,22 @@ export const TextField = ({
       <Input
         id={inputId}
         aria-invalid={isInvalid}
-        aria-describedby={helperText || error ? `${id}-helper-text` : undefined}
+        aria-describedby={
+          helperText || error ? `${inputId}-helper-text` : undefined
+        }
         disabled={disabled}
         {...props}
         ref={ref}
       />
 
-      {(helperText || error) && (
-        <div
-          id={`${id}-helper-text`}
-          className={clsx(styles.helperText, isInvalid && styles.error)}
-        >
-          {error || helperText}
-        </div>
-      )}
+      {(helperText || error) &&
+        (isInvalid ? (
+          <ErrorMessage id={`${inputId}-helper-text`}>{error}</ErrorMessage>
+        ) : (
+          <DescriptionMessage id={`${inputId}-helper-text`}>
+            {helperText}
+          </DescriptionMessage>
+        ))}
     </div>
   );
 };

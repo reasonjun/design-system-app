@@ -9,10 +9,6 @@
   color: #{variables.$color-text-default-primary};
 }
 
-.description {
-  color: #{variables.$color-text-default-secondary};
-}
-
 input:disabled + div .label,
 input:disabled + div .description {
   color: #{variables.$color-text-disabled-primary};

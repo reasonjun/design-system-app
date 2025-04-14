@@ -1,6 +1,9 @@
 import { ChangeEvent, useId } from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
+
+import { DescriptionMessage } from "../../atoms/DescriptionMessage";
+import { ErrorMessage } from "../../atoms/ErrorMessage";
 import { ChoiceField, ChoiceFieldProps } from "../../molecule/ChoiceField";
 
 export interface ChoiceFieldGroupOption extends Omit<ChoiceFieldProps, "type"> {
@@ -82,6 +85,16 @@ export const ChoiceFieldGroup = ({
       )}
       disabled={disabled}
       id={fieldsetId}
+      aria-required={required}
+      aria-invalid={!!error}
+      aria-describedby={
+        [
+          error ? `${fieldsetId}-error` : null,
+          description ? `${fieldsetId}-description` : null,
+        ]
+          .filter(Boolean)
+          .join(" ") || undefined
+      }
     >
       {label && (
         <legend className={styles.legend}>
@@ -89,7 +102,14 @@ export const ChoiceFieldGroup = ({
         </legend>
       )}
 
-      {description && <p className={styles.description}>{description}</p>}
+      {description && (
+        <DescriptionMessage
+          id={`${fieldsetId}-description`}
+          className={styles.description}
+        >
+          {description}
+        </DescriptionMessage>
+      )}
 
       <div className={styles.options}>
         {options.map((option, index) => (
@@ -112,7 +132,7 @@ export const ChoiceFieldGroup = ({
         ))}
       </div>
 
-      {error && <p className={styles.errorMessage} id={`${fieldsetId}-error`}>{error}</p>}
+      {error && <ErrorMessage id={`${fieldsetId}-error`}>{error}</ErrorMessage>}
     </fieldset>
   );
 };
