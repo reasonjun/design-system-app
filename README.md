@@ -1,54 +1,47 @@
-# React + TypeScript + Vite
+# Design System App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based design system built with Vite, TypeScript, and Storybook.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Install dependencies
+yarn install
 
-## Expanding the ESLint configuration
+# Start Storybook
+yarn storybook
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Build Storybook
+yarn build-storybook
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Run tests
+yarn test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Chromatic Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This project uses [Chromatic](https://www.chromatic.com/) for visual testing and review. Chromatic has been automated using GitHub Actions.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Setting up Chromatic
+
+1. Create an account on [Chromatic](https://www.chromatic.com/) and add your project
+2. Get your project token from Chromatic
+3. Add the token as a secret in your GitHub repository:
+   - Go to your GitHub repository
+   - Navigate to Settings > Secrets and variables > Actions
+   - Click "New repository secret"
+   - Name: `CHROMATIC_PROJECT_TOKEN`
+   - Value: Your Chromatic project token
+   - Click "Add secret"
+
+### Workflow
+
+The GitHub Actions workflow will automatically:
+
+- Run on every push to `develop` and `main` branches
+- Run on pull requests to `develop` and `main` branches
+- Build your Storybook
+- Publish to Chromatic
+- Report visual changes for review
+
+The workflow configuration can be found in `.github/workflows/chromatic.yml`.
