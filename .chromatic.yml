@@ -1,0 +1,28 @@
+# Chromatic configuration
+# See full options at: https://www.chromatic.com/docs/config
+
+# Specify the build output directory for Storybook
+storybookBuildDir: ./storybook-static
+
+# Set the number of commits to include in the base build
+# This helps with finding a good baseline in PRs
+baseBranch: develop
+
+# Do not publish snapshots from certain branches
+skip:
+  - dependabot/*
+
+# Capture snapshots of all stories
+# If you want to be more selective, use `onlyStories` instead
+onlyStories: []
+
+# Add UI Review capabilities, allowing collaborators to review and approve UI changes
+enableReviewFeature: true
+
+# Number of screenshots to take in parallel
+# Increasing this can speed up the build but may cause instability
+concurrentSnapshotLimit: 5
+
+# Optional: Set a delay before taking screenshots
+# This can be useful if your components have animations
+# delay: 300
