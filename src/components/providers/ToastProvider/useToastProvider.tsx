@@ -10,7 +10,7 @@ export function useToastProvider(defaultState?: Partial<ToastState>) {
     (props?: Partial<Omit<ToastState, "isShown">>) => {
       setState((prev) => ({ ...prev, ...props, isShown: true }));
     },
-    []
+    [],
   );
   const hideToast = useCallback(() => {
     setState((prev) => ({ ...prev, isShown: false }));

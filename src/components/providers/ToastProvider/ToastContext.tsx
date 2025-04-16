@@ -2,11 +2,11 @@ import { createContext } from "react";
 
 export type ToastStyle = "succeed" | "failed" | "busy";
 
-export type ToastState = {
+export interface ToastState {
   isShown: boolean;
   message: string;
   style: ToastStyle;
-};
+}
 
 export const initialState: ToastState = {
   isShown: false,
@@ -16,10 +16,10 @@ export const initialState: ToastState = {
 
 export const ToastStateContext = createContext<ToastState>(initialState);
 
-export type ToastAction = {
+export interface ToastAction {
   showToast: (state?: Partial<Omit<ToastState, "isShown">>) => void;
   hideToast: () => void;
-};
+}
 
 export const initialAction: ToastAction = {
   showToast: () => {},

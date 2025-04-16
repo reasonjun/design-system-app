@@ -1,6 +1,6 @@
 import { ChangeEvent, useId } from "react";
-import styles from "./styles.module.scss";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 import { DescriptionMessage } from "../../atoms/DescriptionMessage";
 import { ErrorMessage } from "../../atoms/ErrorMessage";

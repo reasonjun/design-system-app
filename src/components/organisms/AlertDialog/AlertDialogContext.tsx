@@ -1,12 +1,12 @@
 import { createContext } from "react";
 
-export type AlertDialogState = {
+export interface AlertDialogState {
   isShown: boolean;
   title: string;
   message: string;
   cancelButtonLabel?: string;
   okButtonLabel?: string;
-};
+}
 
 export const initialState: AlertDialogState = {
   isShown: false,

@@ -5,7 +5,10 @@ import FailedIcon from "./assets/failed.svg?react";
 import SucceedIcon from "./assets/succeed.svg?react";
 import styles from "./styles.module.css";
 
-type Props = { message: string; style: ToastStyle };
+interface Props {
+  message: string;
+  style: ToastStyle;
+}
 
 export const Toast = ({ message, style }: Props) => {
   const [isMount, setIsMount] = useState(false);

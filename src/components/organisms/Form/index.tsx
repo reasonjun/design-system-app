@@ -1,6 +1,7 @@
 import { FormEvent, ReactNode, useId, ElementType } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+
 import { DescriptionMessage } from "../../atoms/DescriptionMessage";
 
 // SectionHeader 컴포넌트
@@ -24,7 +25,7 @@ const SectionHeader = ({
   if (!title && !description) return null;
 
   return (
-    <div className={styles['section-header']}>
+    <div className={styles["section-header"]}>
       {title && <HeadingTag className={styles.title}>{title}</HeadingTag>}
       {description && descriptionId && (
         <DescriptionMessage id={descriptionId} className={styles.description}>
@@ -100,12 +101,12 @@ export const Form = ({
         HeadingTag="h2"
       />
       <div className={styles.fields}>{children}</div>
-      {actions && <div className={styles['actions-wrapper']}>{actions}</div>}
+      {actions && <div className={styles["actions-wrapper"]}>{actions}</div>}
       {isSubmitting && (
-        <div className={styles['loading-indicator']} aria-label="제출 중...">
-          <span className={styles['loading-dot']} />
-          <span className={styles['loading-dot']} />
-          <span className={styles['loading-dot']} />
+        <div className={styles["loading-indicator"]} aria-label="제출 중...">
+          <span className={styles["loading-dot"]} />
+          <span className={styles["loading-dot"]} />
+          <span className={styles["loading-dot"]} />
         </div>
       )}
     </form>
@@ -144,7 +145,7 @@ export const FormSection = ({
   return (
     <section
       id={id || sectionId}
-      className={clsx(className, styles['form-section'])}
+      className={clsx(className, styles["form-section"])}
       aria-describedby={descriptionId}
       {...props}
     >
@@ -176,7 +177,7 @@ export const FormActions = ({
   ...props
 }: FormActionsProps) => {
   return (
-    <div className={clsx(className, styles['form-actions'])} {...props}>
+    <div className={clsx(className, styles["form-actions"])} {...props}>
       {children}
     </div>
   );

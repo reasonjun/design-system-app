@@ -1,4 +1,4 @@
-@use '../../../style-dictionary-dist/variables.scss';
+@use "../../../style-dictionary-dist/variables.scss";
 
 .choice-field-group {
   display: flex;
@@ -13,7 +13,8 @@
   }
 
   &.error {
-    .legend, .required {
+    .legend,
+    .required {
       color: #{variables.$color-text-danger-default};
     }
   }

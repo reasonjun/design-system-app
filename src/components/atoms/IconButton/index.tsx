@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { ReactNode, Ref } from "react";
+import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 export type ButtonVariant = "primary" | "neutral" | "subtle";
