@@ -1,2 +1,2 @@
-export * from "./AlertDialog";
-export * from "./AlertDialogProvider";
+export { AlertDialog } from "./AlertDialog";
+export { AlertDialogProvider } from "./AlertDialogProvider";

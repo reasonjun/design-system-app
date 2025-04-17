@@ -20,6 +20,8 @@ export const AlertDialogStateContext =
   createContext<AlertDialogState>(initialState);
 
 export const AlertDialogActionContext = createContext({
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   showAlertDialog: (_?: Partial<Omit<AlertDialogState, "isShown">>) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   hideAlertDialog: () => {},
 });

@@ -21,13 +21,13 @@ export const AlertDialog = ({ onConfirm }: AlertDialogProps) => {
   return (
     <div className={styles.module}>
       <div className={styles.alertdialog} role="alertdialog" aria-label="확인">
-        <button
+        <Button
           className={styles.close}
           aria-label="닫기"
           onClick={hideAlertDialog}
         >
           &times;
-        </button>
+        </Button>
         <div className={styles.content}>
           <h2 className={styles.heading}>{title}</h2>
           <p className={styles.body}>{message}</p>
