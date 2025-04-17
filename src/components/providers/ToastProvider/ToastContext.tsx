@@ -22,7 +22,9 @@ export interface ToastAction {
 }
 
 export const initialAction: ToastAction = {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   showToast: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   hideToast: () => {},
 };
 

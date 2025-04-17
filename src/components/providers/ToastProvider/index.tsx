@@ -8,6 +8,7 @@ import {
 } from "./ToastContext";
 import { useToastProvider } from "./useToastProvider";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { useToastAction, useToastState } from "./hooks";
 export type { ToastState, ToastStyle };
 
@@ -21,14 +22,15 @@ export const ToastProvider = ({
   const { isShown, message, style, showToast, hideToast } =
     useToastProvider(defaultState);
   return (
-    <ToastStateContext.Provider value={{ isShown, message, style }}>
+    <>
       {/* 하위 컴포넌트에서 isShown, message, style을 참조할 수 있다 */}
-      <ToastActionContext.Provider value={{ showToast, hideToast }}>
+      <ToastStateContext.Provider value={{ isShown, message, style }}>
         {/* 하위 컴포넌트에서 showToast, hideToast를 참조할 수 있다 */}
-        {children}
-        {isShown && <Toast message={message} style={style} />}{" "}
-        {/* isShown이 true가 되면 표시된다 */}
-      </ToastActionContext.Provider>
-    </ToastStateContext.Provider>
+        <ToastActionContext.Provider value={{ showToast, hideToast }}>
+          {children}
+          {isShown && <Toast message={message} style={style} />}{" "}
+        </ToastActionContext.Provider>
+      </ToastStateContext.Provider>
+    </>
   );
 };
