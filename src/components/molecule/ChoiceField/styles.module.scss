@@ -1,15 +1,29 @@
-@use '../../../style-dictionary-dist/variables.scss';
+@use "../../../style-dictionary-dist/variables.scss";
 
 .module {
   display: flex;
   gap: #{variables.$space-100};
-}
 
-.label {
-  color: #{variables.$color-text-default-primary};
-}
+  &:has(input:focus-visible) {
+    outline: 2px dashed lightgray;
+    outline-offset: 2px;
+  }
 
-input:disabled + div .label,
-input:disabled + div .description {
-  color: #{variables.$color-text-disabled-primary};
+  input:focus {
+    outline: none;
+  }
+
+  .label {
+    color: #{variables.$color-text-default-primary};
+    user-select: none;
+  }
+
+  .description {
+    margin: #{variables.$space-0};
+  }
+
+  input:disabled + div .label,
+  input:disabled + div .description {
+    color: #{variables.$color-text-disabled-primary};
+  }
 }

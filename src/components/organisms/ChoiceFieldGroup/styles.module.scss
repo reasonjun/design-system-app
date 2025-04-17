@@ -3,39 +3,30 @@
 .choice-field-group {
   display: flex;
   flex-direction: column;
-  gap: #{variables.$space-200};
+  gap: #{variables.$space-300};
   border: none;
-  padding: 0;
-  margin: 0;
 
   &.disabled {
     opacity: 0.6;
   }
 
-  &.error {
-    .legend,
-    .required {
-      color: #{variables.$color-text-danger-default};
-    }
+  &.error .legend,
+  &.error .required {
+    color: #{variables.$color-text-danger-default};
   }
 
-  &.vertical {
-    .options {
-      flex-direction: column;
-    }
+  &.vertical .options {
+    flex-direction: column;
   }
 
-  &.horizontal {
-    .options {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
+  &.horizontal .options {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .legend {
     font-weight: 500;
     color: #{variables.$color-text-default-primary};
-    padding: 0;
     margin-bottom: #{variables.$space-100};
   }
 
@@ -46,17 +37,22 @@
 
   .description {
     color: #{variables.$color-text-default-secondary};
-    margin: 0 0 #{variables.$space-100};
+    margin: #{variables.$space-0};
   }
 
   .options {
     display: flex;
-    gap: #{variables.$space-200};
+    gap: #{variables.$space-300};
+  }
+
+  .optionGroup {
+    display: flex;
+    flex-direction: column;
   }
 
   .errorMessage {
     color: #{variables.$color-text-danger-default};
-    margin: #{variables.$space-100} 0 0;
+    margin-top: #{variables.$space-100};
     font-size: 0.875rem;
   }
 }

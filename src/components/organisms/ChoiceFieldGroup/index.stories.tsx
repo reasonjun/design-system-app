@@ -70,16 +70,71 @@ const checkboxOptions = [
     description: "Description for option C",
   },
   {
-    label: "Indeterminate Option",
-    value: "optionD",
-    description: "This option is in an indeterminate state",
-    indeterminate: true,
-  },
-  {
     label: "Disabled Option",
     value: "optionE",
     description: "This option is disabled",
     disabled: true,
+  },
+];
+
+// Hierarchical options for demonstrating nested structure
+const hierarchicalOptions = [
+  {
+    label: "전체선택",
+    value: "department",
+    children: [
+      {
+        label: "개발팀",
+        value: "dev-team",
+        description: "개발팀",
+        children: [
+          {
+            label: "프론트엔드팀",
+            value: "frontend-team",
+            description: "프론트엔드 개발",
+            children: [
+              {
+                label: "리액트 담당",
+                value: "react",
+                description: "리액트 개발자",
+              },
+              { label: "뷰 담당", value: "vue", description: "뷰 개발자" },
+            ],
+          },
+          {
+            label: "백엔드팀",
+            value: "backend-team",
+            description: "백엔드 개발",
+            children: [
+              { label: "자바 담당", value: "java", description: "자바 개발자" },
+              {
+                label: "파이썬 담당",
+                value: "python",
+                description: "파이썬 개발자",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        label: "디자인팀",
+        value: "design-team",
+        description: "디자인팀",
+        children: [
+          { label: "UX 디자이너", value: "ux", description: "UX 디자인" },
+          { label: "UI 디자이너", value: "ui", description: "UI 디자인" },
+        ],
+      },
+      {
+        label: "경영지원",
+        value: "management",
+        description: "경영지원 부서",
+        children: [
+          { label: "인사팀", value: "hr", description: "인사 담당" },
+          { label: "회계팀", value: "accounting", description: "회계 담당" },
+        ],
+      },
+    ],
   },
 ];
 
@@ -180,6 +235,48 @@ export const DisabledGroup: Story = {
         value={value}
         onChange={(val) => setValue(val as string[])}
       />
+    );
+  },
+};
+
+// 계층적 구조와 indeterminate 상태를 보여주는 스토리
+export const HierarchicalCheckboxGroup: Story = {
+  args: {
+    type: "checkbox",
+    name: "hierarchical-checkbox-group",
+    options: hierarchicalOptions,
+    orientation: "vertical",
+  },
+  render: (args) => {
+    // 일부 항목만 선택된 초기 상태 설정 (프론트엔드팀의 리액트 담당, 디자인팀의 UX 디자이너)
+    const [value, setValue] = useState<string[]>(["react", "ux"]);
+
+    return (
+      <div>
+        <ChoiceFieldGroup
+          {...args}
+          value={value}
+          onChange={(val) => setValue(val as string[])}
+        />
+        <div
+          style={{
+            marginTop: "20px",
+            padding: "10px",
+            backgroundColor: "#f5f5f5",
+            borderRadius: "4px",
+          }}
+        >
+          <h4>현재 선택된 값:</h4>
+          <pre style={{ overflow: "auto", maxHeight: "150px" }}>
+            {JSON.stringify(value, null, 2)}
+          </pre>
+          <p style={{ fontSize: "14px", color: "#666" }}>
+            <strong>주의:</strong> 리액트 담당과 UX 디자이너만 선택된 상태이므로
+            프론트엔드팀, 개발팀, 부서, 디자인팀에 indeterminate 상태가
+            표시됩니다.
+          </p>
+        </div>
+      </div>
     );
   },
 };

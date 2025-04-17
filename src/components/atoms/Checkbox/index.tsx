@@ -1,4 +1,4 @@
-import { ChangeEvent, Ref } from "react";
+import { ChangeEvent, useEffect, useRef } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
@@ -6,44 +6,37 @@ export interface InputProps {
   label?: string;
   disabled?: boolean;
   indeterminate?: boolean;
-  placeholder?: string;
-  name?: string;
-  id?: string;
   checked?: boolean;
-  value?: string | number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  ref?: Ref<HTMLInputElement>;
 }
 
 export const Checkbox = ({
   label,
   disabled,
-  indeterminate,
-  name,
-  id,
+  indeterminate = false,
   checked,
-  value,
   onChange,
-  ref,
   ...props
 }: InputProps) => {
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.indeterminate = indeterminate;
+    }
+  }, [indeterminate]);
+
   return (
     <input
       type="checkbox"
       className={clsx(styles.module)}
-      name={name}
-      id={id}
       checked={checked}
-      value={value}
       disabled={disabled}
       onChange={onChange}
       aria-label={label}
+      aria-checked={indeterminate ? "mixed" : checked}
       {...props}
-      ref={(el) => {
-        if (el && indeterminate !== undefined) {
-          el.indeterminate = indeterminate;
-        }
-      }}
+      ref={ref}
     />
   );
 };

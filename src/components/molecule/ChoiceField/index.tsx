@@ -1,6 +1,6 @@
 import { ChangeEvent, useId } from "react";
-import styles from "./styles.module.scss";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 import { Checkbox } from "../../atoms/Checkbox";
 import { Radio } from "../../atoms/Radio";
@@ -8,7 +8,7 @@ import { DescriptionMessage } from "../../atoms/DescriptionMessage";
 
 export interface ChoiceFieldProps {
   type: "checkbox" | "radio";
-  label: string;
+  label?: string;
   description?: string;
   disabled?: boolean;
   indeterminate?: boolean; // checkbox only

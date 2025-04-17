@@ -6,10 +6,21 @@ import { DescriptionMessage } from "../../atoms/DescriptionMessage";
 import { ErrorMessage } from "../../atoms/ErrorMessage";
 import { ChoiceField, ChoiceFieldProps } from "../../molecule/ChoiceField";
 
+import { useChoiceFieldState } from "./hooks/useChoiceFieldState";
+
+/**
+ * 선택 필드 그룹 옵션 인터페이스
+ */
 export interface ChoiceFieldGroupOption extends Omit<ChoiceFieldProps, "type"> {
   value: string;
+  children?: ChoiceFieldGroupOption[];
+  indeterminate?: boolean;
+  checked?: boolean;
 }
 
+/**
+ * 선택 필드 그룹 props 인터페이스
+ */
 export interface ChoiceFieldGroupProps {
   type: "checkbox" | "radio";
   name: string;
@@ -25,6 +36,80 @@ export interface ChoiceFieldGroupProps {
   className?: string;
 }
 
+/**
+ * 옵션 목록을 렌더링하는 컴포넌트
+ * 각 옵션에 대한 재귀적 렌더링을 처리합니다.
+ */
+const ChoiceOptionList = ({
+  options,
+  type,
+  name,
+  disabled,
+  isChecked,
+  onChange,
+}: {
+  options: ChoiceFieldGroupOption[];
+  type: "checkbox" | "radio";
+  name: string;
+  disabled?: boolean;
+  isChecked: (value: string, option?: ChoiceFieldGroupOption) => boolean;
+  onChange: (
+    e: ChangeEvent<HTMLInputElement>,
+    option: ChoiceFieldGroupOption,
+  ) => void;
+}) => {
+  /**
+   * 단일 옵션과 그 하위 옵션들을 재귀적으로 렌더링하는 내부 컴포넌트
+   */
+  const renderOption = (
+    option: ChoiceFieldGroupOption,
+    index: number,
+    level = 0,
+  ) => {
+    const childOptionsStyle = {
+      paddingLeft: "24px",
+      marginTop: "8px",
+    };
+
+    return (
+      <div
+        key={`${name}-${level}-${index}-${option.value}`}
+        className={styles.optionGroup}
+        style={{ marginLeft: `${level * 24}px` }}
+      >
+        <ChoiceField
+          type={type}
+          label={option.label}
+          description={option.description}
+          disabled={disabled || option.disabled}
+          checked={isChecked(option.value, option)}
+          value={option.value}
+          name={name}
+          onChange={(e) => onChange(e, option)}
+          indeterminate={type === "checkbox" ? option.indeterminate : undefined}
+        />
+
+        {option.children && option.children.length > 0 && (
+          <div style={childOptionsStyle}>
+            {option.children.map((child, childIndex) =>
+              renderOption(child, childIndex, level + 1),
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <div className={styles.options}>
+      {options.map((option, index) => renderOption(option, index))}
+    </div>
+  );
+};
+
+/**
+ * 선택 필드 그룹 컴포넌트
+ */
 export const ChoiceFieldGroup = ({
   type,
   name,
@@ -41,38 +126,12 @@ export const ChoiceFieldGroup = ({
 }: ChoiceFieldGroupProps) => {
   const fieldsetId = useId();
 
-  const handleChange = (
-    _: ChangeEvent<HTMLInputElement>,
-    option: ChoiceFieldGroupOption,
-  ) => {
-    if (!onChange) return;
-
-    if (type === "radio") {
-      // Radio buttons can only have one selected value
-      onChange(option.value);
-    } else {
-      // Checkboxes can have multiple values
-      const valueArray = Array.isArray(value) ? value : value ? [value] : [];
-
-      if (valueArray.includes(option.value)) {
-        // Remove value if already selected
-        onChange(valueArray.filter((v) => v !== option.value));
-      } else {
-        // Add value if not selected
-        onChange([...valueArray, option.value]);
-      }
-    }
-  };
-
-  const isChecked = (optionValue: string) => {
-    if (type === "radio") {
-      return value === optionValue;
-    } else {
-      // For checkboxes, check if the value exists in the array
-      const valueArray = Array.isArray(value) ? value : value ? [value] : [];
-      return valueArray.includes(optionValue);
-    }
-  };
+  const { optionsState, handleChange, isChecked } = useChoiceFieldState(
+    type,
+    options,
+    value,
+    onChange,
+  );
 
   return (
     <fieldset
@@ -85,7 +144,6 @@ export const ChoiceFieldGroup = ({
       )}
       disabled={disabled}
       id={fieldsetId}
-      aria-required={required}
       aria-invalid={!!error}
       aria-describedby={
         [
@@ -111,26 +169,14 @@ export const ChoiceFieldGroup = ({
         </DescriptionMessage>
       )}
 
-      <div className={styles.options}>
-        {options.map((option, index) => (
-          <ChoiceField
-            key={`${name}-${index}-${option.value}`}
-            type={type}
-            label={option.label}
-            description={option.description}
-            disabled={disabled || option.disabled}
-            checked={isChecked(option.value)}
-            value={option.value}
-            name={name}
-            onChange={(e) =>
-              handleChange(e as ChangeEvent<HTMLInputElement>, option)
-            }
-            {...(type === "checkbox" && {
-              indeterminate: option.indeterminate,
-            })}
-          />
-        ))}
-      </div>
+      <ChoiceOptionList
+        options={optionsState}
+        type={type}
+        name={name}
+        disabled={disabled}
+        isChecked={isChecked}
+        onChange={handleChange}
+      />
 
       {error && <ErrorMessage id={`${fieldsetId}-error`}>{error}</ErrorMessage>}
     </fieldset>
