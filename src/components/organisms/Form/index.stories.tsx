@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Form, FormActions, FormSection } from "./index";
-import { TextField } from "../../molecule/TextField";
-import { Button } from "../../atoms/Button";
+import { Form, FormSection } from ".";
+
 import { ChoiceFieldGroup } from "../ChoiceFieldGroup";
+import { Button } from "../../atoms/Button";
+import { ButtonGroup } from "../../molecule/ButtonGroup";
+import { TextField } from "../../molecule/TextField";
 
 const meta: Meta<typeof Form> = {
   component: Form,
@@ -29,11 +31,7 @@ export const Default: Story = {
         <TextField label="이메일" type="email" />
       </>
     ),
-    actions: (
-      <FormActions>
-        <Button type="submit">제출</Button>
-      </FormActions>
-    ),
+    actions: <Button type="submit">제출</Button>,
   },
 };
 
@@ -55,10 +53,10 @@ export const WithSections: Story = {
       </>
     ),
     actions: (
-      <FormActions>
+      <ButtonGroup alignment="center">
         <Button variant="secondary">취소</Button>
         <Button type="submit">제출</Button>
-      </FormActions>
+      </ButtonGroup>
     ),
   },
 };
@@ -72,11 +70,7 @@ export const WithValidationErrors: Story = {
         <TextField label="이메일" type="email" />
       </>
     ),
-    actions: (
-      <FormActions>
-        <Button type="submit">제출</Button>
-      </FormActions>
-    ),
+    actions: <Button type="submit">제출</Button>,
   },
 };
 
@@ -91,11 +85,9 @@ export const IsSubmitting: Story = {
       </>
     ),
     actions: (
-      <FormActions>
-        <Button type="submit" disabled>
-          제출 중...
-        </Button>
-      </FormActions>
+      <Button type="submit" disabled>
+        제출 중...
+      </Button>
     ),
   },
 };
@@ -133,10 +125,6 @@ export const WithChoiceFields: Story = {
         />
       </>
     ),
-    actions: (
-      <FormActions>
-        <Button type="submit">제출</Button>
-      </FormActions>
-    ),
+    actions: <Button type="submit">제출</Button>,
   },
 };

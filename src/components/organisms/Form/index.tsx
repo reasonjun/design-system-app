@@ -3,6 +3,7 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 import { DescriptionMessage } from "../../atoms/DescriptionMessage";
+import { ErrorMessage } from "../../atoms/ErrorMessage";
 
 // SectionHeader 컴포넌트
 interface SectionHeaderProps {
@@ -54,6 +55,8 @@ export interface FormProps {
   className?: string;
   /** Form의 ID */
   id?: string;
+  /** Form의 오류 메시지 */
+  error?: string;
 }
 
 /**
@@ -68,10 +71,13 @@ export const Form = ({
   description,
   isSubmitting = false,
   className,
+  error,
   id,
   ...props
 }: FormProps) => {
-  const formId = useId();
+  const generatedId = useId();
+  // Use a unified ID reference - prefer the provided ID if available, otherwise use generated ID
+  const formId = id || generatedId;
   const descriptionId = description ? `${formId}-description` : undefined;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -83,7 +89,7 @@ export const Form = ({
 
   return (
     <form
-      id={id || formId}
+      id={formId}
       className={clsx(
         className,
         styles.form,
@@ -101,7 +107,8 @@ export const Form = ({
         HeadingTag="h2"
       />
       <div className={styles.fields}>{children}</div>
-      {actions && <div className={styles["actions-wrapper"]}>{actions}</div>}
+      {error && <ErrorMessage id={`${formId}-error`}>{error}</ErrorMessage>}
+      {actions && <FormActions>{actions}</FormActions>}
       {isSubmitting && (
         <div className={styles["loading-indicator"]} aria-label="제출 중...">
           <span className={styles["loading-dot"]} />
@@ -139,12 +146,14 @@ export const FormSection = ({
   id,
   ...props
 }: FormSectionProps) => {
-  const sectionId = useId();
+  const generatedId = useId();
+  // Use a unified ID reference - prefer the provided ID if available, otherwise use generated ID
+  const sectionId = id || generatedId;
   const descriptionId = description ? `${sectionId}-description` : undefined;
 
   return (
     <section
-      id={id || sectionId}
+      id={sectionId}
       className={clsx(className, styles["form-section"])}
       aria-describedby={descriptionId}
       {...props}
@@ -171,14 +180,8 @@ export interface FormActionsProps {
 /**
  * FormActions 컴포넌트는 폼의 제출 및 취소 버튼과 같은 액션 요소들을 배치합니다.
  */
-export const FormActions = ({
-  children,
-  className,
-  ...props
-}: FormActionsProps) => {
+export const FormActions = ({ children, className }: FormActionsProps) => {
   return (
-    <div className={clsx(className, styles["form-actions"])} {...props}>
-      {children}
-    </div>
+    <div className={clsx(className, styles["actions-wrapper"])}>{children}</div>
   );
 };

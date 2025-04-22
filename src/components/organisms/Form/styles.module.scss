@@ -1,5 +1,4 @@
-@use '../../../style-dictionary-dist/variables.scss';
-
+@use "../../../style-dictionary-dist/variables.scss";
 
 .form {
   display: flex;
@@ -11,7 +10,6 @@
   border-radius: #{variables.$radius-200};
   padding: #{variables.$space-600};
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
 
   .section-header {
     display: flex;
@@ -40,8 +38,11 @@
 
   .actions-wrapper {
     margin-top: #{variables.$space-600};
-  }
 
+    > button {
+      width: 100%;
+    }
+  }
 
   &.submitting {
     opacity: 0.7;
@@ -104,15 +105,9 @@
   }
 }
 
-.form-actions {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: #{variables.$space-600};
-  justify-content: center;
-}
-
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(0.5);
     opacity: 0.5;
   }
