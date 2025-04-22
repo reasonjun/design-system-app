@@ -1,0 +1,18 @@
+@use '../../../style-dictionary-dist/variables.scss';
+
+.module {
+  text-decoration: none;
+  color: #{variables.$color-text-default-primary};
+  padding: #{variables.$space-200};
+  border-radius: #{variables.$radius-200};
+
+  /* 호버 상태 (Hover) */
+  &:hover {
+    background-color: #{variables.$color-background-default-primary-hover};
+  }
+
+  /* 활성화 상태 (Active) */
+  &:active {
+    background-color: #{variables.$color-background-brand-tertiary};
+  }
+}
