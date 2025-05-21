@@ -2,7 +2,7 @@ import { ChangeEvent, Ref } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-export interface InputProps {
+export interface RadioProps {
   label?: string;
   disabled?: boolean;
   name?: string;
@@ -23,7 +23,7 @@ export const Radio = ({
   onChange,
   ref,
   ...props
-}: InputProps) => {
+}: RadioProps) => {
   return (
     <input
       type="radio"

@@ -2,18 +2,18 @@ import { ReactNode, Ref } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-export type ButtonVariant = "primary" | "neutral" | "subtle";
-export type ButtonSize = "medium" | "small";
+export type IconButtonVariant = "primary" | "neutral" | "subtle";
+export type IconButtonSize = "medium" | "small";
 
-export interface ButtonProps {
+export interface IconButtonProps {
   /** 버튼 라벨 */
   label: string;
   /** 아이콘 내용 */
   icon: ReactNode;
   /** 버튼 타입 (스타일) */
-  variant?: ButtonVariant;
+  variant?: IconButtonVariant;
   /** 버튼 크기 */
-  size?: ButtonSize;
+  size?: IconButtonSize;
   /** 버튼 비활성화 여부 */
   disabled?: boolean;
   /** 클릭 핸들러 */
@@ -23,7 +23,7 @@ export interface ButtonProps {
 }
 
 /** Primary UI component for user interaction */
-export const Button = ({
+export const IconButton = ({
   label,
   icon,
   variant = "primary",
@@ -32,7 +32,7 @@ export const Button = ({
   onClick,
   ref,
   ...props
-}: ButtonProps) => {
+}: IconButtonProps) => {
   return (
     <button
       type="button"

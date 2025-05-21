@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useRef } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-export interface InputProps {
+export interface CheckboxProps {
   label?: string;
   disabled?: boolean;
   indeterminate?: boolean;
@@ -17,7 +17,7 @@ export const Checkbox = ({
   checked,
   onChange,
   ...props
-}: InputProps) => {
+}: CheckboxProps) => {
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
