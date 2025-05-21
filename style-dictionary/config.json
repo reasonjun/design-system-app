@@ -11,13 +11,17 @@
         }
       ]
     },
-    "js": {
+    "ts": {
       "transformGroup": "js",
       "buildPath": "./src/style-dictionary-dist/",
       "files": [
         {
           "destination": "variables.js",
           "format": "javascript/es6"
+        },
+        {
+          "destination": "variables.d.ts",
+          "format": "typescript/es6-declarations"
         }
       ]
     }
