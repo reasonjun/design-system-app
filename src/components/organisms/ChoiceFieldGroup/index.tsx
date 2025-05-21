@@ -54,7 +54,7 @@ const ChoiceOptionList = ({
   disabled?: boolean;
   isChecked: (value: string, option?: ChoiceFieldGroupOption) => boolean;
   onChange: (
-    e: ChangeEvent<HTMLInputElement>,
+    e: ChangeEvent<HTMLInputElement> | undefined,
     option: ChoiceFieldGroupOption,
   ) => void;
 }) => {

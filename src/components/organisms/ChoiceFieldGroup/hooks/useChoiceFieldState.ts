@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useMemo, ChangeEvent } from "react";
-import { ChoiceFieldGroupOption } from "../types";
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { ChoiceFieldGroupOption } from "..";
 import { useOptionTree } from "./useOptionTree";
 import { updateOptionStates } from "../utils/optionUtils";
 
@@ -29,7 +29,10 @@ export function useChoiceFieldState(
 
   // 옵션 변경 처리
   const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>, option: ChoiceFieldGroupOption) => {
+    (
+      _e: ChangeEvent<HTMLInputElement> | undefined,
+      option: ChoiceFieldGroupOption,
+    ) => {
       if (!onChange) return;
 
       if (type === "radio") {

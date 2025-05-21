@@ -1,4 +1,4 @@
-import { ChoiceFieldGroupOption } from "../types";
+import { ChoiceFieldGroupOption } from "..";
 
 /**
  * 모든 옵션의 값을 가져오는 함수
@@ -37,11 +37,11 @@ export const getChildValues = (option: ChoiceFieldGroupOption): string[] => {
  */
 export const updateOptionStates = (
   opts: ChoiceFieldGroupOption[],
-  selected: string[]
+  selected: string[],
 ): ChoiceFieldGroupOption[] => {
   // 첫 번째 패스: 기본 상태 계산 (bottom-up)
   const calculateStates = (
-    nodes: ChoiceFieldGroupOption[]
+    nodes: ChoiceFieldGroupOption[],
   ): ChoiceFieldGroupOption[] => {
     return nodes.map((node) => {
       // 리프 노드 처리
@@ -57,11 +57,9 @@ export const updateOptionStates = (
       const processedChildren = calculateStates(node.children);
 
       // 자식 노드 상태 확인
-      const hasCheckedChild = processedChildren.some(
-        (child) => child.checked
-      );
+      const hasCheckedChild = processedChildren.some((child) => child.checked);
       const hasIndeterminateChild = processedChildren.some(
-        (child) => child.indeterminate
+        (child) => child.indeterminate,
       );
       const allChildrenChecked =
         processedChildren.length > 0 &&
