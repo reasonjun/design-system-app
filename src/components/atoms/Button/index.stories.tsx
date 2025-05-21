@@ -3,17 +3,17 @@ import { fn } from "@storybook/test";
 
 import { Button } from ".";
 
-const meta = {
+const meta: Meta<typeof Button> = {
   title: "Atoms/Button",
   component: Button,
   tags: ["autodocs"],
   args: { onClick: fn() },
-} satisfies Meta<typeof Button>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const BasicButton: Story = { args: { children: "Button" } };
+export const Default: Story = { args: { children: "Button" } };
 
 const iconSvg = (
   <svg
@@ -27,6 +27,6 @@ const iconSvg = (
   </svg>
 );
 
-export const ButtonWithIcon: Story = {
-  args: { ...BasicButton.args, showIcon: true, icon: iconSvg },
+export const WithIcon: Story = {
+  args: { ...Default.args, showIcon: true, icon: iconSvg },
 };

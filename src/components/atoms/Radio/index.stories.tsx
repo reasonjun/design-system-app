@@ -2,15 +2,15 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Radio } from ".";
 
-const meta = {
+const meta: Meta<typeof Radio> = {
   title: "Atoms/Radio",
   component: Radio,
   tags: ["autodocs"],
-} satisfies Meta<typeof Radio>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const BasicRadio: Story = {
+export const Default: Story = {
   args: { label: "Radio" },
 };

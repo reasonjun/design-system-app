@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ErrorMessage } from "./";
 
-const meta = {
+const meta: Meta<typeof ErrorMessage> = {
   title: "Atoms/ErrorMessage",
   component: ErrorMessage,
   tags: ["autodocs"],
-} satisfies Meta<typeof ErrorMessage>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;

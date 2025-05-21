@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Anchor } from ".";
 
-const meta = {
+const meta: Meta<typeof Anchor> = {
   title: "Atoms/Anchor",
   component: Anchor,
   tags: ["autodocs"],
@@ -25,13 +25,13 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Anchor>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // 기본 앵커
-export const BasicAnchor: Story = {
+export const Default: Story = {
   args: {
     href: "https://example.com",
     children: "기본 링크",
@@ -41,7 +41,7 @@ export const BasicAnchor: Story = {
 // 외부 링크 예제
 export const ExternalLink: Story = {
   args: {
-    ...BasicAnchor.args,
+    ...Default.args,
     children: "외부 링크",
     target: "_blank",
   },
@@ -57,7 +57,7 @@ export const ExternalLink: Story = {
 // 접근성 개선 예제
 export const AccessibleAnchor: Story = {
   args: {
-    ...BasicAnchor.args,
+    ...Default.args,
     children: "PDF 다운로드",
     href: "/example.pdf",
     screenReaderText: "사용자 매뉴얼 PDF 다운로드 (1.2MB)",

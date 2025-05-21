@@ -2,17 +2,17 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { ChoiceField } from ".";
 
-const meta = {
+const meta: Meta<typeof ChoiceField> = {
   title: "Molecule/ChoiceField",
   component: ChoiceField,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-} satisfies Meta<typeof ChoiceField>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const CheckboxField: Story = {
+export const Default: Story = {
   args: {
     type: "checkbox",
     label: "Checkbox",

@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { Button } from ".";
+import { IconButton } from ".";
 
-const meta = {
+// 명시적 타입 주석 추가 (as const 사용)
+const meta: Meta<typeof IconButton> = {
   title: "Atoms/IconButton",
-  component: Button,
+  component: IconButton,
   tags: ["autodocs"],
   args: { onClick: fn() },
-} satisfies Meta<typeof Button>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -27,4 +28,4 @@ const iconSvg = (
   </svg>
 );
 
-export const IconButton: Story = { args: { icon: iconSvg, label: "Search" } };
+export const Default: Story = { args: { icon: iconSvg, label: "Search" } };
