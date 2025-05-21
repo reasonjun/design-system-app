@@ -9,16 +9,24 @@ lerna-debug.log*
 build-storybook.log
 chromatic.log
 
+# Dependency directories
 node_modules
+.pnp
+.pnp.js
+
+# Build / distribution
 dist
 dist-ssr
+storybook-static
+src/style-dictionary-dist
 *.local
+*.tgz
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+.vscode/settings.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
