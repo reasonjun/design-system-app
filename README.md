@@ -2,6 +2,33 @@
 
 A React-based design system built with Vite, TypeScript, and Storybook.
 
+## Installation
+
+### From GitHub Packages
+
+```bash
+# Configure npm to use GitHub Packages for @reasonjun scope
+npm config set @reasonjun:registry https://npm.pkg.github.com
+
+# Install the package
+npm install @reasonjun/design-system-app
+```
+
+### Usage
+
+```tsx
+import { Button, Input } from '@reasonjun/design-system-app';
+
+function App() {
+  return (
+    <div>
+      <Button variant="primary">Click me</Button>
+      <Input placeholder="Enter text" />
+    </div>
+  );
+}
+```
+
 ## Getting Started
 
 ```bash

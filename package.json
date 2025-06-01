@@ -1,7 +1,7 @@
 {
-  "name": "@your-org/design-system-app",
+  "name": "@reasonjun/design-system-app",
   "private": false,
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Design system components for your application",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/design-system-app.git"
+    "url": "https://github.com/reasonjun/design-system-app.git"
   },
   "keywords": [
     "design-system",
@@ -18,8 +18,11 @@
     "components",
     "ui"
   ],
-  "author": "Your Name",
+  "author": "reasonjun",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "type": "module",
   "scripts": {
     "build": "vite build --mode lib",
