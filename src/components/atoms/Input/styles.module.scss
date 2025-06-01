@@ -7,7 +7,7 @@
   border: #{variables.$stroke-border} solid #{variables.$color-border-default-primary};
   padding: #{variables.$space-400};
 
-  &.disabled {
+  &:disabled {
     color: #{variables.$color-text-disabled-primary};
     background-color: #{variables.$color-background-disabled-default};
     border-color: #{variables.$color-border-disabled-default};
