@@ -1,10 +1,17 @@
 {
   "name": "@reasonjun/design-system-app",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Design system components for your application",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -23,7 +30,6 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "type": "module",
   "scripts": {
     "build": "vite build --mode lib",
     "build:types": "tsc -p tsconfig.lib.json",
@@ -77,6 +83,7 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.30.1",
     "vite": "6.2.6",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
     "vite-plugin-svgr": "^4.3.0",
     "vitest": "^3.1.1"
   },
