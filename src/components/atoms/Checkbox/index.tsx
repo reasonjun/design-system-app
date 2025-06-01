@@ -1,13 +1,10 @@
-import { ChangeEvent, useEffect, useRef } from "react";
+import { ComponentProps, useEffect, useRef } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-export interface CheckboxProps {
+export interface CheckboxProps extends ComponentProps<'input'> {
   label?: string;
-  disabled?: boolean;
   indeterminate?: boolean;
-  checked?: boolean;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Checkbox = ({
@@ -16,6 +13,7 @@ export const Checkbox = ({
   indeterminate = false,
   checked,
   onChange,
+  className,
   ...props
 }: CheckboxProps) => {
   const ref = useRef<HTMLInputElement>(null);
@@ -28,15 +26,15 @@ export const Checkbox = ({
 
   return (
     <input
+      ref={ref}
       type="checkbox"
-      className={clsx(styles.module)}
+      className={clsx(styles.module, className)}
       checked={checked}
       disabled={disabled}
       onChange={onChange}
       aria-label={label}
       aria-checked={indeterminate ? "mixed" : checked}
       {...props}
-      ref={ref}
     />
   );
 };

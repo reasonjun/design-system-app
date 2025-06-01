@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ReactNode, Ref } from "react";
+import { ComponentProps, ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
@@ -7,7 +7,7 @@ export type ButtonVariant = "primary" | "secondary" | "tertiary";
 export type ButtonSize = "large" | "medium" | "small";
 export type ButtonIconPosition = "left" | "right";
 
-export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
+export interface ButtonProps extends ComponentProps<"button"> {
   /** HTML 버튼 타입 */
   type?: ButtonType;
   /** 버튼 라벨 */
@@ -22,8 +22,6 @@ export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   iconPosition?: ButtonIconPosition;
   /** 아이콘 컴포넌트 */
   icon?: ReactNode;
-  /** 버튼 ref */
-  ref?: Ref<HTMLButtonElement>;
 }
 
 /** Primary UI component for user interaction */
@@ -37,17 +35,16 @@ export const Button = ({
   icon,
   disabled = false,
   onClick,
-  ref,
+  className,
   ...props
 }: ButtonProps) => {
   return (
     <button
       type={type}
-      className={clsx(styles.module, styles[variant], styles[size])}
+      className={clsx(styles.module, styles[variant], styles[size], className)}
       disabled={disabled}
       onClick={onClick}
       {...props}
-      ref={ref}
     >
       {showIcon && iconPosition === "left" && (
         <span className={styles["icon-start"]}>{icon}</span>

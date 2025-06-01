@@ -1,16 +1,9 @@
-import { ChangeEvent, Ref } from "react";
+import { ComponentProps } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-export interface RadioProps {
+export interface RadioProps extends ComponentProps<'input'> {
   label?: string;
-  disabled?: boolean;
-  name?: string;
-  id?: string;
-  checked?: boolean;
-  value?: string | number;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  ref?: Ref<HTMLInputElement>;
 }
 
 export const Radio = ({
@@ -21,13 +14,13 @@ export const Radio = ({
   checked,
   value,
   onChange,
-  ref,
+  className,
   ...props
 }: RadioProps) => {
   return (
     <input
       type="radio"
-      className={clsx(styles.module)}
+      className={clsx(styles.module, className)}
       name={name}
       id={id}
       checked={checked}
@@ -36,7 +29,6 @@ export const Radio = ({
       onChange={onChange}
       aria-label={label}
       {...props}
-      ref={ref}
     />
   );
 };

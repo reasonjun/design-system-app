@@ -1,8 +1,8 @@
-import { ComponentPropsWithoutRef, Ref } from "react";
+import { ComponentProps } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-export interface AnchorProps extends ComponentPropsWithoutRef<"a"> {
+export interface AnchorProps extends ComponentProps<"a"> {
   /** 링크 텍스트 */
   children: string;
   /** 링크 URL */
@@ -13,8 +13,6 @@ export interface AnchorProps extends ComponentPropsWithoutRef<"a"> {
   target?: string;
   /** 스크린 리더를 위한 추가 텍스트 */
   screenReaderText?: string;
-  /** 링크 ref */
-  ref?: Ref<HTMLAnchorElement>;
 }
 
 /** Primary UI component for navigation and links */
@@ -25,7 +23,6 @@ export const Anchor = ({
   target = "_self",
   rel,
   screenReaderText,
-  ref,
   ...props
 }: AnchorProps) => {
   // 외부 링크에 대한 보안 속성 자동 추가
@@ -46,7 +43,6 @@ export const Anchor = ({
       rel={safeRel}
       className={clsx(className, styles.module)}
       aria-label={ariaLabel}
-      ref={ref}
       {...props}
     >
       {children}
