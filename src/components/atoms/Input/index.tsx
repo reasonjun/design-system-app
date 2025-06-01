@@ -2,7 +2,7 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { ComponentProps } from "react";
 
-interface InputProps extends ComponentProps<"input"> {
+export interface InputProps extends ComponentProps<"input"> {
   label?: string;
 }
 
