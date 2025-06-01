@@ -1,0 +1,35 @@
+# 소스 파일
+src/
+public/
+.storybook/
+
+# 개발 관련 파일
+*.config.js
+*.config.ts
+index.html
+vitest.workspace.ts
+chromatic.config.json
+.chromatic.yml
+
+# 테스트 파일
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# 문서 및 예제
+CONTRIBUTING.md
+.github/
+
+# 개발 환경
+.idea/
+.vscode/
+node_modules/
+.DS_Store
+
+# Storybook 빌드
+storybook-static/
+
+# 임시 파일
+*.log
+*.tmp
