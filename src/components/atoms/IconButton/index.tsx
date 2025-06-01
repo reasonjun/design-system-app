@@ -1,11 +1,11 @@
-import { ReactNode, Ref } from "react";
+import { ComponentProps, ReactNode } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 export type IconButtonVariant = "primary" | "neutral" | "subtle";
 export type IconButtonSize = "medium" | "small";
 
-export interface IconButtonProps {
+export interface IconButtonProps extends ComponentProps<"button"> {
   /** 버튼 라벨 */
   label: string;
   /** 아이콘 내용 */
@@ -14,12 +14,6 @@ export interface IconButtonProps {
   variant?: IconButtonVariant;
   /** 버튼 크기 */
   size?: IconButtonSize;
-  /** 버튼 비활성화 여부 */
-  disabled?: boolean;
-  /** 클릭 핸들러 */
-  onClick?: () => void;
-  /** 버튼 ref */
-  ref?: Ref<HTMLButtonElement>;
 }
 
 /** Primary UI component for user interaction */
@@ -28,20 +22,15 @@ export const IconButton = ({
   icon,
   variant = "primary",
   size = "medium",
-  disabled = false,
-  onClick,
-  ref,
+  className,
   ...props
 }: IconButtonProps) => {
   return (
     <button
       type="button"
-      className={clsx(styles.module, styles[variant], styles[size])}
+      className={clsx(styles.module, styles[variant], styles[size], className)}
       aria-label={label}
-      disabled={disabled}
-      onClick={onClick}
       {...props}
-      ref={ref}
     >
       {icon}
       <span className={styles["visually-hidden"]}>{label}</span>

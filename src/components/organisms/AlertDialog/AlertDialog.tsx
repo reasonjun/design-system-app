@@ -1,4 +1,5 @@
 import { Button } from "../../atoms/Button";
+import { IconButton } from "../../atoms/IconButton";
 import { useAlertDialogAction, useAlertDialogState } from "./hooks";
 import styles from "./styles.module.css";
 
@@ -21,13 +22,13 @@ export const AlertDialog = ({ onConfirm }: AlertDialogProps) => {
   return (
     <div className={styles.module}>
       <div className={styles.alertdialog} role="alertdialog" aria-label="확인">
-        <Button
+        <IconButton
           className={styles.close}
-          aria-label="닫기"
+          label="닫기"
+          icon="×"
+          variant="subtle"
           onClick={hideAlertDialog}
-        >
-          &times;
-        </Button>
+        />
         <div className={styles.content}>
           <h2 className={styles.heading}>{title}</h2>
           <p className={styles.body}>{message}</p>
