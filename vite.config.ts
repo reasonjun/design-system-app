@@ -1,21 +1,17 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import babel from "@rolldown/plugin-babel";
 import svgr from "vite-plugin-svgr";
 import cssInjectedByJs from "vite-plugin-css-injected-by-js";
-
-const reactCompilerConfig = {
-  babel: {
-    plugins: ["babel-plugin-react-compiler"],
-  },
-};
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   if (mode === "lib") {
     return {
       plugins: [
-        react(reactCompilerConfig),
+        react(),
+        babel({ presets: [reactCompilerPreset()] }),
         svgr(),
         cssInjectedByJs(), // CSS를 자동으로 JS에 인젝션
       ],
@@ -41,6 +37,6 @@ export default defineConfig(({ mode }) => {
   }
 
   return {
-    plugins: [react(reactCompilerConfig), svgr()],
+    plugins: [react(), babel({ presets: [reactCompilerPreset()] }), svgr()],
   };
 });
