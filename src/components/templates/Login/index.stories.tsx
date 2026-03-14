@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Login } from "./index";
+import { FormEvent } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { LoginFormValues } from ".";
-import { FormEvent } from "react";
+import { Login, LoginFormValues } from ".";
 
 // Zod 스키마 정의 (스토리 테스트용)
 const loginSchema = z.object({
@@ -66,7 +65,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  decorators: [(Story) => <Story />],
 } as Meta<typeof LoginWithHookForm>;
 
 export default meta;

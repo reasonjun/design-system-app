@@ -8,7 +8,7 @@ import { DescriptionMessage } from "../../atoms/DescriptionMessage";
 
 export interface TextFieldProps extends Omit<InputProps, "id" | "aria-label"> {
   label: string;
-  /** OPTIONAL HELPER TEXT TO BE DISPLAYED BELOW THE INPUT */
+  /** Optional helper text to be displayed below the input */
   helperText?: string;
   /** Error message to be displayed if input is invalid */
   error?: string;

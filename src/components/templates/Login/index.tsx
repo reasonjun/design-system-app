@@ -1,6 +1,5 @@
 import { FormEvent } from "react";
 import { Control, Controller, FieldErrors } from "react-hook-form";
-import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 import { Button } from "../../atoms/Button";
@@ -43,7 +42,7 @@ export const Login = ({
   onSignUpClick,
 }: LoginTemplateProps) => {
   const actions = (
-    <div className={clsx(styles["action-container"])}>
+    <div className={styles["action-container"]}>
       <ButtonGroup alignment="stack">
         <Button type="submit" disabled={isLoading}>
           {isLoading ? "처리 중..." : "로그인"}
@@ -52,7 +51,7 @@ export const Login = ({
           회원가입
         </Button>
       </ButtonGroup>
-      <div className={clsx(styles["link-container"])}>
+      <div className={styles["link-container"]}>
         <Anchor>아이디 찾기</Anchor>
         <Anchor>비밀번호 찾기</Anchor>
       </div>

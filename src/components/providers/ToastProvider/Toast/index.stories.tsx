@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toast } from ".";
-import { ToastProvider, ToastState } from "../.";
+import { ToastProvider, ToastState } from "..";
 
 const meta: Meta<typeof Toast> = {
   component: Toast,
