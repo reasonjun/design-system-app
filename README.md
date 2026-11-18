@@ -42,6 +42,7 @@ yarn storybook
 yarn build-storybook
 
 # Run tests
+yarn playwright install chromium
 yarn test
 ```
 

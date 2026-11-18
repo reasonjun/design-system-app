@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Login } from "./index";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
