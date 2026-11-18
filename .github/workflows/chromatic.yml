@@ -20,13 +20,7 @@ jobs:
         with:
           fetch-depth: 0 # Required to retrieve git history
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22.x'
-
-      - name: Install dependencies
-        run: yarn install
+      - uses: ./.github/actions/setup
 
       - name: Build Style Dictionary
         run: yarn build-dictionary
