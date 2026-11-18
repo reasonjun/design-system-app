@@ -19,7 +19,7 @@ export const ToastProvider = ({
   children: ReactNode;
   defaultState?: Partial<ToastState>;
 }) => {
-  const { isShown, message, style, showToast, hideToast } =
+  const { isShown, message, style, id, showToast, hideToast } =
     useToastProvider(defaultState);
   return (
     <>
@@ -28,7 +28,7 @@ export const ToastProvider = ({
         {/* 하위 컴포넌트에서 showToast, hideToast를 참조할 수 있다 */}
         <ToastActionContext.Provider value={{ showToast, hideToast }}>
           {children}
-          {isShown && <Toast message={message} style={style} />}
+          {isShown && <Toast key={id} message={message} style={style} />}
         </ToastActionContext.Provider>
       </ToastStateContext.Provider>
     </>
