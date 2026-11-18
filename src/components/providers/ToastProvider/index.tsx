@@ -1,15 +1,15 @@
 import { ReactNode } from "react";
-import { Toast } from "./Toast";
+import { Toast } from "./Toast/index.js";
 import {
   ToastActionContext,
   ToastState,
   ToastStateContext,
   ToastStyle,
-} from "./ToastContext";
-import { useToastProvider } from "./useToastProvider";
+} from "./ToastContext.js";
+import { useToastProvider } from "./useToastProvider.js";
 
 // eslint-disable-next-line react-refresh/only-export-components
-export { useToastAction, useToastState } from "./hooks";
+export { useToastAction, useToastState } from "./hooks.js";
 export type { ToastState, ToastStyle };
 
 export const ToastProvider = ({
@@ -28,7 +28,7 @@ export const ToastProvider = ({
         {/* 하위 컴포넌트에서 showToast, hideToast를 참조할 수 있다 */}
         <ToastActionContext.Provider value={{ showToast, hideToast }}>
           {children}
-          {isShown && <Toast message={message} style={style} />}{" "}
+          {isShown && <Toast message={message} style={style} />}
         </ToastActionContext.Provider>
       </ToastStateContext.Provider>
     </>

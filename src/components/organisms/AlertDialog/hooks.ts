@@ -2,7 +2,7 @@ import { useContext } from "react";
 import {
   AlertDialogActionContext,
   AlertDialogStateContext,
-} from "./AlertDialogContext";
+} from "./AlertDialogContext.js";
 
 export function useAlertDialogAction() {
   return useContext(AlertDialogActionContext);

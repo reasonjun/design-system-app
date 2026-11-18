@@ -2,9 +2,9 @@ import { Ref, useId } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-import { Input, InputProps } from "../../atoms/Input";
-import { ErrorMessage } from "../../atoms/ErrorMessage";
-import { DescriptionMessage } from "../../atoms/DescriptionMessage";
+import { Input, InputProps } from "../../atoms/Input/index.js";
+import { ErrorMessage } from "../../atoms/ErrorMessage/index.js";
+import { DescriptionMessage } from "../../atoms/DescriptionMessage/index.js";
 
 export interface TextFieldProps extends Omit<InputProps, "id" | "aria-label"> {
   label: string;

@@ -24,15 +24,9 @@ export default defineConfig(({ mode }) => {
           fileName: "index",
           formats: ["es"], // ES modules만 빌드
         },
+        copyPublicDir: false, // public/ 의 데모 자산(vite.svg)이 dist 로 배포되지 않도록
         rolldownOptions: {
-          external: ["react", "react-dom", "react-hook-form"],
-          output: {
-            globals: {
-              react: "React",
-              "react-dom": "ReactDOM",
-              "react-hook-form": "ReactHookForm",
-            },
-          },
+          external: [/^react($|\/)/, /^react-dom($|\/)/, "react-hook-form"], // 하위 경로(react/jsx-runtime, react/compiler-runtime)도 번들에서 제외
         },
       },
     };

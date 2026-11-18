@@ -4,7 +4,7 @@ import {
   AlertDialogState,
   AlertDialogStateContext,
   initialState,
-} from "./AlertDialogContext";
+} from "./AlertDialogContext.js";
 
 export const AlertDialogProvider = ({
   children,

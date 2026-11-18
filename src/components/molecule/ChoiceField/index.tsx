@@ -2,9 +2,9 @@ import { ChangeEvent, useId } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-import { Checkbox } from "../../atoms/Checkbox";
-import { Radio } from "../../atoms/Radio";
-import { DescriptionMessage } from "../../atoms/DescriptionMessage";
+import { Checkbox } from "../../atoms/Checkbox/index.js";
+import { Radio } from "../../atoms/Radio/index.js";
+import { DescriptionMessage } from "../../atoms/DescriptionMessage/index.js";
 
 export interface ChoiceFieldProps {
   type: "checkbox" | "radio";

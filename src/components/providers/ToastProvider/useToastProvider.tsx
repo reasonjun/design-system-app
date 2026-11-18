@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { initialState, ToastState } from "./ToastContext";
+import { initialState, ToastState } from "./ToastContext.js";
 
 export function useToastProvider(defaultState?: Partial<ToastState>) {
   const [{ isShown, message, style }, setState] = useState({

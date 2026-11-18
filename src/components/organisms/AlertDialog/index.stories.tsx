@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AlertDialog, AlertDialogProvider } from ".";
-import { AlertDialogState } from "./AlertDialogContext";
+import { AlertDialogState } from "./AlertDialogContext.js";
 
 // 스토리 등록용 함수
 function createDecorator(defaultState?: Partial<AlertDialogState>) {

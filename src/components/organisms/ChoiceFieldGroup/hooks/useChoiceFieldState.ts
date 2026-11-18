@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
-import { ChoiceFieldGroupOption } from "..";
-import { useOptionTree } from "./useOptionTree";
-import { updateOptionStates } from "../utils/optionUtils";
+import { ChoiceFieldGroupOption } from "../index.js";
+import { useOptionTree } from "./useOptionTree.js";
+import { updateOptionStates } from "../utils/optionUtils.js";
 
 /**
  * ChoiceFieldGroup의 상태를 관리하는 훅

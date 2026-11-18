@@ -2,11 +2,11 @@ import { ChangeEvent, useId } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-import { DescriptionMessage } from "../../atoms/DescriptionMessage";
-import { ErrorMessage } from "../../atoms/ErrorMessage";
-import { ChoiceField, ChoiceFieldProps } from "../../molecule/ChoiceField";
+import { DescriptionMessage } from "../../atoms/DescriptionMessage/index.js";
+import { ErrorMessage } from "../../atoms/ErrorMessage/index.js";
+import { ChoiceField, ChoiceFieldProps } from "../../molecule/ChoiceField/index.js";
 
-import { useChoiceFieldState } from "./hooks/useChoiceFieldState";
+import { useChoiceFieldState } from "./hooks/useChoiceFieldState.js";
 
 /**
  * 선택 필드 그룹 옵션 인터페이스

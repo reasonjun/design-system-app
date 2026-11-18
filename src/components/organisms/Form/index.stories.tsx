@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Form, FormSection } from ".";
 
-import { ChoiceFieldGroup } from "../ChoiceFieldGroup";
-import { Button } from "../../atoms/Button";
-import { ButtonGroup } from "../../molecule/ButtonGroup";
-import { TextField } from "../../molecule/TextField";
+import { ChoiceFieldGroup } from "../ChoiceFieldGroup/index.js";
+import { Button } from "../../atoms/Button/index.js";
+import { ButtonGroup } from "../../molecule/ButtonGroup/index.js";
+import { TextField } from "../../molecule/TextField/index.js";
 
 const meta: Meta<typeof Form> = {
   component: Form,

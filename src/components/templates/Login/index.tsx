@@ -2,11 +2,11 @@ import { FormEvent } from "react";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import styles from "./styles.module.scss";
 
-import { Button } from "../../atoms/Button";
-import { TextField } from "../../molecule/TextField";
-import { Form } from "../../organisms/Form";
-import { Anchor } from "../../atoms/Anchor";
-import { ButtonGroup } from "../../molecule/ButtonGroup";
+import { Button } from "../../atoms/Button/index.js";
+import { TextField } from "../../molecule/TextField/index.js";
+import { Form } from "../../organisms/Form/index.js";
+import { Anchor } from "../../atoms/Anchor/index.js";
+import { ButtonGroup } from "../../molecule/ButtonGroup/index.js";
 
 export interface LoginFormValues {
   username: string;

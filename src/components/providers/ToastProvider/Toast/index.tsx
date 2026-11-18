@@ -1,5 +1,5 @@
-import { useToastAction } from "../hooks";
-import { ToastStyle } from "../ToastContext";
+import { useToastAction } from "../hooks.js";
+import { ToastStyle } from "../ToastContext.js";
 import { useState, useEffect } from "react";
 import FailedIcon from "./assets/failed.svg?react";
 import SucceedIcon from "./assets/succeed.svg?react";

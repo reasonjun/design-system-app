@@ -1,4 +1,4 @@
-import { ChoiceFieldGroupOption } from "..";
+import { ChoiceFieldGroupOption } from "../index.js";
 
 /**
  * 모든 옵션의 값을 가져오는 함수

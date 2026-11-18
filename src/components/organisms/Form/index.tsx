@@ -2,8 +2,8 @@ import { FormEvent, ReactNode, useId, ElementType } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-import { DescriptionMessage } from "../../atoms/DescriptionMessage";
-import { ErrorMessage } from "../../atoms/ErrorMessage";
+import { DescriptionMessage } from "../../atoms/DescriptionMessage/index.js";
+import { ErrorMessage } from "../../atoms/ErrorMessage/index.js";
 
 // SectionHeader 컴포넌트
 interface SectionHeaderProps {

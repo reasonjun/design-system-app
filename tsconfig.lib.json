@@ -5,7 +5,8 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "noEmit": false,
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },

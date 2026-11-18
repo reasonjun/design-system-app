@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-import { Button, ButtonProps } from "../../atoms/Button";
+import { Button, ButtonProps } from "../../atoms/Button/index.js";
 
 export type ButtonGroupAlignment =
   | "justify"

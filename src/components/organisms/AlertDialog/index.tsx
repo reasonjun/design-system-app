@@ -1,2 +1,2 @@
-export { AlertDialog } from "./AlertDialog";
-export { AlertDialogProvider } from "./AlertDialogProvider";
+export { AlertDialog } from "./AlertDialog.js";
+export { AlertDialogProvider } from "./AlertDialogProvider.js";

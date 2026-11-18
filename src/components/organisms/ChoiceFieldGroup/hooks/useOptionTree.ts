@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { ChoiceFieldGroupOption } from "..";
-import { getAllValues, getChildValues } from "../utils/optionUtils";
+import { ChoiceFieldGroupOption } from "../index.js";
+import { getAllValues, getChildValues } from "../utils/optionUtils.js";
 
 /**
  * 옵션 트리를 관리하는 훅

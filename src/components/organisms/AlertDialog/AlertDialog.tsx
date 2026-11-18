@@ -1,6 +1,6 @@
-import { Button } from "../../atoms/Button";
-import { IconButton } from "../../atoms/IconButton";
-import { useAlertDialogAction, useAlertDialogState } from "./hooks";
+import { Button } from "../../atoms/Button/index.js";
+import { IconButton } from "../../atoms/IconButton/index.js";
+import { useAlertDialogAction, useAlertDialogState } from "./hooks.js";
 import styles from "./styles.module.css";
 
 interface AlertDialogProps {
