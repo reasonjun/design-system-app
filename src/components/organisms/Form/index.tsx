@@ -109,8 +109,12 @@ export const Form = ({
       <div className={styles.fields}>{children}</div>
       {error && <ErrorMessage id={`${formId}-error`}>{error}</ErrorMessage>}
       {actions && <FormActions>{actions}</FormActions>}
+      {/* 라이브 영역은 항상 마운트돼 있어야 내용 변화가 스크린리더에 읽힌다 */}
+      <span role="status" className={styles["sr-only"]}>
+        {isSubmitting ? "제출 중..." : ""}
+      </span>
       {isSubmitting && (
-        <div className={styles["loading-indicator"]} aria-label="제출 중...">
+        <div className={styles["loading-indicator"]} aria-hidden="true">
           <span className={styles["loading-dot"]} />
           <span className={styles["loading-dot"]} />
           <span className={styles["loading-dot"]} />

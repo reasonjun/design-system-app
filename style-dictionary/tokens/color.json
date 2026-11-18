@@ -385,7 +385,7 @@
       },
       "Brand": {
         "Primary": {
-          "$value": "{color.base.Brand.600}",
+          "$value": "{color.base.Brand.700}",
           "$type": "color",
           "$description": "Bg/Brand/Default"
         },
@@ -395,7 +395,7 @@
           "$description": "Bg/Brand/Secondary"
         },
         "Primary Hover": {
-          "$value": "{color.base.Brand.700}",
+          "$value": "{color.base.Brand.800}",
           "$type": "color",
           "$description": "Bg/Brand/Hover"
         },
@@ -647,11 +647,11 @@
       },
       "Brand": {
         "Primary": {
-          "$value": "{color.base.Brand.600}",
+          "$value": "{color.base.Brand.700}",
           "$type": "color"
         },
         "Secondary": {
-          "$value": "{color.base.Brand.700}",
+          "$value": "{color.base.Brand.800}",
           "$type": "color"
         },
         "Tertiary": {
@@ -781,7 +781,7 @@
           "$type": "color"
         },
         "Secondary": {
-          "$value": "{color.base.Gray.500}",
+          "$value": "{color.base.Gray.600}",
           "$type": "color"
         },
         "Tertiary": {
@@ -791,7 +791,7 @@
       },
       "Disabled": {
         "Primary": {
-          "$value": "{color.base.Black.300}",
+          "$value": "{color.base.Gray.600}",
           "$type": "color"
         },
         "On Disabled": {

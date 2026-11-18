@@ -17,9 +17,9 @@ export const BasicButtonGroup: Story = {
   args: {
     alignment: "start",
     children: [
-      <Button>Button</Button>,
-      <Button>Button</Button>,
-      <Button>Button</Button>,
+      <Button key="1">Button</Button>,
+      <Button key="2">Button</Button>,
+      <Button key="3">Button</Button>,
     ],
   },
 };

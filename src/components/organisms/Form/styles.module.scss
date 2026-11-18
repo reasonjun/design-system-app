@@ -6,7 +6,8 @@
   gap: #{variables.$space-600};
   width: 100%;
   background-color: #{variables.$color-background-default-primary};
-  border: #{variables.$stroke-border} solid #{variables.$color-border-default-primary};
+  border: #{variables.$stroke-border} solid
+    #{variables.$color-border-default-primary};
   border-radius: #{variables.$radius-200};
   padding: #{variables.$space-600};
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -47,6 +48,18 @@
   &.submitting {
     opacity: 0.7;
     pointer-events: none;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 
   .loading-indicator {

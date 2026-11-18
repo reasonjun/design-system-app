@@ -1,3 +1,5 @@
+@use '../../../../style-dictionary-dist/variables.scss';
+
 .module {
   display: flex;
   justify-content: center;
@@ -9,6 +11,7 @@
   font-size: 2rem;
   border-radius: 8px;
   text-align: center;
+  color: #{variables.$color-base-white-1000};
   transition-duration: 0.4s;
   pointer-events: none;
 }
@@ -22,15 +25,15 @@
 }
 
 .module[data-style="busy"] {
-  background-color: gray;
+  background-color: #{variables.$color-base-gray-600};
 }
 
 .module[data-style="succeed"] {
-  background-color: blue;
+  background-color: #{variables.$color-base-green-700};
 }
 
 .module[data-style="failed"] {
-  background-color: pink;
+  background-color: #{variables.$color-base-red-600};
 }
 
 .module[data-mounted="false"] {

@@ -55,7 +55,7 @@ export const WithError: Story = {
     label: "Username",
     placeholder: "Enter your username",
     error: "Username is already taken",
-    value: "johndoe",
+    defaultValue: "johndoe",
   },
 };
 

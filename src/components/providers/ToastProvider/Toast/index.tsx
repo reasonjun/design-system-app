@@ -3,7 +3,7 @@ import { ToastStyle } from "../ToastContext.js";
 import { useState, useEffect } from "react";
 import FailedIcon from "./assets/failed.svg?react";
 import SucceedIcon from "./assets/succeed.svg?react";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 interface Props {
   message: string;
