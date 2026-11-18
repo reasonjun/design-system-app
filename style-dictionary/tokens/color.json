@@ -801,11 +801,11 @@
       },
       "Brand": {
         "Primary": {
-          "$value": "{color.base.Brand.600}",
+          "$value": "{color.base.Brand.700}",
           "$type": "color"
         },
         "Secondary": {
-          "$value": "{color.base.Brand.700}",
+          "$value": "{color.base.Brand.800}",
           "$type": "color"
         },
         "Tertiary": {
