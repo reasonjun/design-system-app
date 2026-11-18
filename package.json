@@ -1,7 +1,7 @@
 {
   "name": "@reasonjun/design-system-app",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Design system components for your application",
   "type": "module",
   "main": "dist/index.js",
@@ -44,18 +44,17 @@
     "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.0.1",
-    "clsx": "^2.1.1",
+    "clsx": "^2.1.1"
+  },
+  "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.55.0",
-    "react-use": "^17.6.0",
-    "storybook": "^8.6.12",
-    "zod": "^3.24.2"
+    "react-hook-form": "^7.55.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3",
     "@eslint/js": "^9.24.0",
+    "@hookform/resolvers": "^5.0.1",
     "@storybook/addon-a11y": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-onboarding": "^8.6.12",
@@ -69,6 +68,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/browser": "^3.1.1",
     "@vitest/coverage-v8": "^3.1.1",
+    "zod": "^3.24.2",
     "chromatic": "^11.28.0",
     "eslint": "^9.24.0",
     "eslint-config-prettier": "^10.1.2",
@@ -78,7 +78,11 @@
     "globals": "^16.0.0",
     "playwright": "^1.51.1",
     "prettier": "^3.5.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.55.0",
     "sass-embedded": "^1.86.3",
+    "storybook": "^8.6.12",
     "style-dictionary": "^4.3.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.30.1",
