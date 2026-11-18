@@ -27,6 +27,19 @@ export function useChoiceFieldState(
 
   useEffect(() => setOptionsState([...options]), [options]);
 
+  // 선택 여부 확인
+  const isChecked = useCallback(
+    (optionValue: string, option?: ChoiceFieldGroupOption) => {
+      if (type === "radio") return value === optionValue;
+      // 체크박스의 경우 실제 선택된 값과 계산된 상태 모두 체크
+      return (
+        valueArray.includes(optionValue) ||
+        (option?.checked === true && !option?.indeterminate)
+      );
+    },
+    [type, value, valueArray],
+  );
+
   // 옵션 변경 처리
   const handleChange = useCallback(
     (
@@ -38,7 +51,8 @@ export function useChoiceFieldState(
       if (type === "radio") {
         onChange(option.value);
       } else {
-        if (valueArray.includes(option.value)) {
+        // 화면에 보이는 체크 상태 기준: 자식이 모두 선택돼 체크로 보이는 부모도 해제 대상
+        if (isChecked(option.value, option)) {
           // 체크 해제: 자신과 모든 하위 옵션 체크 해제
           const childValues = getChildValues(option);
           const newValues = valueArray.filter(
@@ -55,7 +69,7 @@ export function useChoiceFieldState(
         }
       }
     },
-    [type, onChange, valueArray, getChildValues],
+    [type, onChange, valueArray, getChildValues, isChecked],
   );
 
   // 전체 선택 처리
@@ -68,19 +82,6 @@ export function useChoiceFieldState(
       onChange(getAllValues(options));
     }
   }, [onChange, selectAllState, getAllValues, options]);
-
-  // 선택 여부 확인
-  const isChecked = useCallback(
-    (optionValue: string, option?: ChoiceFieldGroupOption) => {
-      if (type === "radio") return value === optionValue;
-      // 체크박스의 경우 실제 선택된 값과 계산된 상태 모두 체크
-      return (
-        valueArray.includes(optionValue) ||
-        (option?.checked === true && !option?.indeterminate)
-      );
-    },
-    [type, value, valueArray],
-  );
 
   // 선택 상태 업데이트
   useEffect(() => {
