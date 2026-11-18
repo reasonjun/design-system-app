@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
+import { expect } from "storybook/test";
 
 import { ChoiceFieldGroup } from ".";
 
@@ -278,5 +279,21 @@ export const HierarchicalCheckboxGroup: Story = {
         </div>
       </div>
     );
+  },
+};
+
+export const UncheckParentCheckedViaChildren: Story = {
+  ...HierarchicalCheckboxGroup,
+  play: async ({ canvas, userEvent }) => {
+    const designTeam = canvas.getByRole("checkbox", { name: "디자인팀" });
+    const ux = canvas.getByRole("checkbox", { name: "UX 디자이너" });
+    const ui = canvas.getByRole("checkbox", { name: "UI 디자이너" });
+    await userEvent.click(ui);
+    await expect(designTeam).toBeChecked();
+
+    await userEvent.click(designTeam);
+    await expect(designTeam).not.toBeChecked();
+    await expect(ux).not.toBeChecked();
+    await expect(ui).not.toBeChecked();
   },
 };

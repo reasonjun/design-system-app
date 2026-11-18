@@ -5,6 +5,8 @@ import FailedIcon from "./assets/failed.svg?react";
 import SucceedIcon from "./assets/succeed.svg?react";
 import styles from "./styles.module.scss";
 
+export const TOAST_DURATION = 2000;
+
 interface Props {
   message: string;
   style: ToastStyle;
@@ -20,10 +22,9 @@ export const Toast = ({ message, style }: Props) => {
       setIsMount(true);
     }, 50);
 
-    // Auto-hide toast after 2 seconds
     const hideTimeout = setTimeout(() => {
       hideToast();
-    }, 2000);
+    }, TOAST_DURATION);
 
     // Clean up timers
     return () => {
