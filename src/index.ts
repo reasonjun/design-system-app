@@ -9,9 +9,6 @@ export * from "./components/molecule/index.js";
 // Organisms - 조직화된 컴포넌트 그룹
 export * from "./components/organisms/index.js";
 
-// Templates - 페이지 템플릿
-export * from "./components/templates/index.js";
-
 // Providers - 컨텍스트 프로바이더
 export * from "./components/providers/index.js";
 

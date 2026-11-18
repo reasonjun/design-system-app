@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
         },
         copyPublicDir: false, // public/ 의 데모 자산(vite.svg)이 dist 로 배포되지 않도록
         rolldownOptions: {
-          external: [/^react($|\/)/, /^react-dom($|\/)/, "react-hook-form"], // 하위 경로(react/jsx-runtime, react/compiler-runtime)도 번들에서 제외
+          external: [/^react($|\/)/, /^react-dom($|\/)/], // 하위 경로(react/jsx-runtime, react/compiler-runtime)도 번들에서 제외
         },
       },
     };

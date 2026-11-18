@@ -3,7 +3,7 @@ import { FormEvent } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Login, LoginFormValues } from ".";
+import { Login } from ".";
 
 // Zod 스키마 정의 (스토리 테스트용)
 const loginSchema = z.object({
@@ -19,14 +19,16 @@ interface LoginWrapperProps {
   formError?: string;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   onSignUpClick?: () => void;
+  findIdHref: string;
+  findPasswordHref: string;
 }
 
-// 스토리북에서 React Hook Form을 사용하기 위한 래퍼 컴포넌트
+// 스토리북에서 React Hook Form을 연결해 보여주는 래퍼 컴포넌트 (Login 자체는 폼 라이브러리에 의존하지 않음)
 const LoginWithHookForm = (args: LoginWrapperProps) => {
   const {
-    control,
+    register,
     formState: { errors },
-  } = useForm<LoginFormValues>({
+  } = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       username: args.defaultUsername || "",
@@ -37,20 +39,22 @@ const LoginWithHookForm = (args: LoginWrapperProps) => {
 
   return (
     <Login
-      control={control}
-      errors={errors}
       isLoading={args.isLoading}
       formError={args.formError}
       onSubmit={(e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (args.onSubmit) {
-          args.onSubmit(e);
-        }
+        args.onSubmit?.(e);
       }}
-      onSignUpClick={() => {
-        if (args.onSignUpClick) {
-          args.onSignUpClick();
-        }
+      onSignUpClick={() => args.onSignUpClick?.()}
+      findIdHref={args.findIdHref}
+      findPasswordHref={args.findPasswordHref}
+      usernameProps={{
+        ...register("username"),
+        error: errors.username?.message,
+      }}
+      passwordProps={{
+        ...register("password"),
+        error: errors.password?.message,
       }}
     />
   );
@@ -59,7 +63,7 @@ const LoginWithHookForm = (args: LoginWrapperProps) => {
 // 스토리북 메타데이터 정의
 // LoginWithHookForm을 메타에 사용하여 래퍼 컴포넌트의 props가 스토리에서 사용되도록 함
 const meta = {
-  title: "Templates/Login",
+  title: "Organisms/Login",
   component: LoginWithHookForm,
   parameters: {
     layout: "centered",
@@ -84,6 +88,8 @@ export const Default: Story = {
     onSignUpClick: () => {
       console.log("회원가입 버튼 클릭");
     },
+    findIdHref: "/find-id",
+    findPasswordHref: "/find-password",
   },
 };
 
@@ -112,49 +118,19 @@ export const Prefilled: Story = {
   },
 };
 
-// 필드 에러가 있는 스토리 (유효성 검사 실패)
+// 필드 에러가 있는 스토리: Login 은 폼 라이브러리 없이도 props 만으로 동작한다
 export const WithFieldErrors: Story = {
-  render: (args) => {
-    const {
-      control,
-      formState: { errors },
-    } = useForm<LoginFormValues>({
-      resolver: zodResolver(loginSchema),
-      defaultValues: {
-        username: "",
-        password: "pwd", // 6자 미만으로 유효성 검사 실패
-      },
-      mode: "onChange",
-    });
-
-    // 수동으로 에러 설정
-    type ErrorsWithMessage = Record<keyof LoginFormValues, { message: string }>;
-    const typedErrors = errors as unknown as ErrorsWithMessage;
-
-    typedErrors.username = { message: "아이디를 입력해주세요" };
-    typedErrors.password = { message: "비밀번호는 6자 이상이어야 합니다" };
-
-    return (
-      <Login
-        control={control}
-        errors={errors}
-        isLoading={args.isLoading}
-        formError={args.formError}
-        onSubmit={(e: FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          if (args.onSubmit) {
-            args.onSubmit(e);
-          }
-        }}
-        onSignUpClick={() => {
-          if (args.onSignUpClick) {
-            args.onSignUpClick();
-          }
-        }}
-      />
-    );
-  },
-  args: {
-    ...Default.args,
-  },
+  render: () => (
+    <Login
+      onSubmit={(e) => e.preventDefault()}
+      onSignUpClick={() => console.log("회원가입 버튼 클릭")}
+      findIdHref="/find-id"
+      findPasswordHref="/find-password"
+      usernameProps={{ error: "아이디를 입력해주세요" }}
+      passwordProps={{
+        defaultValue: "pwd",
+        error: "비밀번호는 6자 이상이어야 합니다",
+      }}
+    />
+  ),
 };
