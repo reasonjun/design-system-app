@@ -13,7 +13,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const BasieButtonGroup: Story = {
+export const BasicButtonGroup: Story = {
   args: {
     alignment: "start",
     children: [

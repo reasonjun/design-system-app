@@ -33,16 +33,13 @@ export const Anchor = ({
         : "noopener noreferrer"
       : rel;
 
-  // 스크린 리더를 위한 텍스트가 있는 경우
-  const ariaLabel = screenReaderText || undefined;
-
   return (
     <a
       href={href}
       target={target}
       rel={safeRel}
       className={clsx(className, styles.module)}
-      aria-label={ariaLabel}
+      aria-label={screenReaderText}
       {...props}
     >
       {children}

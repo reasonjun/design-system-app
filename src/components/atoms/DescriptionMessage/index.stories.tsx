@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { DescriptionMessage } from "./";
+import { DescriptionMessage } from ".";
 
 const meta: Meta<typeof DescriptionMessage> = {
   title: "Atoms/DescriptionMessage",
