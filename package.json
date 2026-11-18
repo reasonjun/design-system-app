@@ -1,7 +1,7 @@
 {
   "name": "@reasonjun/design-system-app",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.2.0",
   "description": "Design system components for your application",
   "type": "module",
   "main": "dist/index.js",
