@@ -297,3 +297,21 @@ export const UncheckParentCheckedViaChildren: Story = {
     await expect(ui).not.toBeChecked();
   },
 };
+
+export const UncheckChildOfCheckedParent: Story = {
+  ...HierarchicalCheckboxGroup,
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    const selectedValues = () =>
+      JSON.parse(canvasElement.querySelector("pre")?.textContent ?? "null");
+    const designTeam = canvas.getByRole("checkbox", { name: "디자인팀" });
+    await userEvent.click(designTeam);
+    await expect(designTeam).toBeChecked();
+
+    await userEvent.click(
+      canvas.getByRole("checkbox", { name: "UX 디자이너" }),
+    );
+    await expect(designTeam).not.toBeChecked();
+    await expect(designTeam).toBePartiallyChecked();
+    await expect(selectedValues()).toEqual(["react", "ui"]);
+  },
+};

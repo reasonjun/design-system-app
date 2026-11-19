@@ -1,4 +1,4 @@
-import { ChangeEvent, useId } from "react";
+import { useId } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
@@ -14,8 +14,6 @@ import { useChoiceFieldState } from "./hooks/useChoiceFieldState.js";
 export interface ChoiceFieldGroupOption extends Omit<ChoiceFieldProps, "type"> {
   value: string;
   children?: ChoiceFieldGroupOption[];
-  indeterminate?: boolean;
-  checked?: boolean;
 }
 
 /**
@@ -27,6 +25,10 @@ export interface ChoiceFieldGroupProps {
   label?: string;
   description?: string;
   options: ChoiceFieldGroupOption[];
+  /**
+   * checkbox: 선택된 리프 옵션 값만 담는다.
+   * 부모 값은 무시되며, 부모 상태는 자식으로부터 계산된다.
+   */
   value?: string | string[];
   onChange?: (value: string | string[]) => void;
   orientation?: "vertical" | "horizontal";
@@ -45,18 +47,13 @@ const ChoiceOptionList = ({
   type,
   name,
   disabled,
-  isChecked,
   onChange,
 }: {
   options: ChoiceFieldGroupOption[];
   type: "checkbox" | "radio";
   name: string;
   disabled?: boolean;
-  isChecked: (value: string, option?: ChoiceFieldGroupOption) => boolean;
-  onChange: (
-    e: ChangeEvent<HTMLInputElement> | undefined,
-    option: ChoiceFieldGroupOption,
-  ) => void;
+  onChange: (option: ChoiceFieldGroupOption) => void;
 }) => {
   /**
    * 단일 옵션과 그 하위 옵션들을 재귀적으로 렌더링하는 내부 컴포넌트
@@ -82,11 +79,11 @@ const ChoiceOptionList = ({
           label={option.label}
           description={option.description}
           disabled={disabled || option.disabled}
-          checked={isChecked(option.value, option)}
+          checked={option.checked}
           value={option.value}
           name={name}
-          onChange={(e) => onChange(e, option)}
-          indeterminate={type === "checkbox" ? option.indeterminate : undefined}
+          onChange={() => onChange(option)}
+          indeterminate={option.indeterminate}
         />
 
         {option.children && option.children.length > 0 && (
@@ -126,7 +123,7 @@ export const ChoiceFieldGroup = ({
 }: ChoiceFieldGroupProps) => {
   const fieldsetId = useId();
 
-  const { optionsState, handleChange, isChecked } = useChoiceFieldState(
+  const { optionsState, handleChange } = useChoiceFieldState(
     type,
     options,
     value,
@@ -174,7 +171,6 @@ export const ChoiceFieldGroup = ({
         type={type}
         name={name}
         disabled={disabled}
-        isChecked={isChecked}
         onChange={handleChange}
       />
 
