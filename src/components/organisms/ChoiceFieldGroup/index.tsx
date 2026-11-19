@@ -8,17 +8,11 @@ import { ChoiceField, ChoiceFieldProps } from "../../molecule/ChoiceField/index.
 
 import { useChoiceFieldState } from "./hooks/useChoiceFieldState.js";
 
-/**
- * 선택 필드 그룹 옵션 인터페이스
- */
 export interface ChoiceFieldGroupOption extends Omit<ChoiceFieldProps, "type"> {
   value: string;
   children?: ChoiceFieldGroupOption[];
 }
 
-/**
- * 선택 필드 그룹 props 인터페이스
- */
 export interface ChoiceFieldGroupProps {
   type: "checkbox" | "radio";
   name: string;
@@ -38,10 +32,6 @@ export interface ChoiceFieldGroupProps {
   className?: string;
 }
 
-/**
- * 옵션 목록을 렌더링하는 컴포넌트
- * 각 옵션에 대한 재귀적 렌더링을 처리합니다.
- */
 const ChoiceOptionList = ({
   options,
   type,
@@ -55,9 +45,6 @@ const ChoiceOptionList = ({
   disabled?: boolean;
   onChange: (option: ChoiceFieldGroupOption) => void;
 }) => {
-  /**
-   * 단일 옵션과 그 하위 옵션들을 재귀적으로 렌더링하는 내부 컴포넌트
-   */
   const renderOption = (
     option: ChoiceFieldGroupOption,
     index: number,
@@ -104,9 +91,6 @@ const ChoiceOptionList = ({
   );
 };
 
-/**
- * 선택 필드 그룹 컴포넌트
- */
 export const ChoiceFieldGroup = ({
   type,
   name,
