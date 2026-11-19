@@ -6,6 +6,8 @@ import SucceedIcon from "./assets/succeed.svg?react";
 import styles from "./styles.module.scss";
 
 export const TOAST_DURATION = 2000;
+// 첫 프레임을 data-mounted="false"로 그려야 CSS 등장 전환이 실행된다
+const ENTER_TRANSITION_DELAY = 50;
 
 interface Props {
   message: string;
@@ -17,16 +19,14 @@ export const Toast = ({ message, style }: Props) => {
   const { hideToast } = useToastAction();
 
   useEffect(() => {
-    // Mount animation with delay
     const mountTimeout = setTimeout(() => {
       setIsMount(true);
-    }, 50);
+    }, ENTER_TRANSITION_DELAY);
 
     const hideTimeout = setTimeout(() => {
       hideToast();
     }, TOAST_DURATION);
 
-    // Clean up timers
     return () => {
       clearTimeout(mountTimeout);
       clearTimeout(hideTimeout);
