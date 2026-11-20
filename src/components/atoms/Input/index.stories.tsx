@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useRef, useState } from "react";
 
+import { ColorTextDefaultSecondary } from "../../../style-dictionary-dist/variables.js";
 import { Input } from ".";
 
 const meta: Meta<typeof Input> = {
@@ -57,7 +58,13 @@ export const Controlled: Story = {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <p style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
+        <p
+          style={{
+            marginTop: "8px",
+            fontSize: "12px",
+            color: ColorTextDefaultSecondary,
+          }}
+        >
           Value: "{value}"
         </p>
       </div>

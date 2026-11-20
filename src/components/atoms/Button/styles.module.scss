@@ -26,7 +26,7 @@
   }
 
   &.secondary {
-    color: #000000;
+    color: #{variables.$color-text-brand-on-brand-secondary};
     background-color: #{variables.$color-background-brand-secondary};
 
     &:not(:disabled):hover {

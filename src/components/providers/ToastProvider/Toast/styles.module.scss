@@ -21,7 +21,7 @@
 }
 
 .module path {
-  fill: white;
+  fill: #{variables.$color-base-white-1000};
 }
 
 .module[data-style="busy"] {

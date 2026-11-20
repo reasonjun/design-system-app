@@ -21,7 +21,7 @@ export const AlertDialogProvider = ({
     [],
   );
   const hideAlertDialog = useCallback(() => {
-    setState((prev) => ({ ...prev, isShown: false }));
+    setState((prev) => (prev.isShown ? { ...prev, isShown: false } : prev));
   }, []);
   return (
     <AlertDialogStateContext.Provider value={state}>

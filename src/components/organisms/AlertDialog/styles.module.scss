@@ -1,24 +1,17 @@
-.module {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.35);
-}
+@use '../../../style-dictionary-dist/variables.scss';
 
 .alertdialog {
-    position: relative;
-    max-width: 640px;
+    max-width: min(640px, calc(100% - 32px));
     padding: 48px;
-    margin: 16px;
-    color: #2c3e50;
+    border: none;
+    color: #{variables.$color-text-default-primary};
     border-radius: 12px;
-    background-color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: #{variables.$color-background-default-primary};
+    box-shadow: 0 4px 12px #{variables.$color-base-black-200};
+}
+
+.alertdialog::backdrop {
+    background-color: #{variables.$color-background-utilities-overlay};
 }
 
 .close {
@@ -29,7 +22,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: #000;
+    color: #{variables.$color-icon-default-primary};
 }
 
 .content {
@@ -40,12 +33,12 @@
         font-size: 2rem;
         font-weight: 700;
         margin-bottom: 8px;
-        color: #000;
+        color: #{variables.$color-text-default-primary};
     }
 
     .body {
         font-size: 1.4rem;
-        color: #333;
+        color: #{variables.$color-text-default-secondary};
     }
 }
 

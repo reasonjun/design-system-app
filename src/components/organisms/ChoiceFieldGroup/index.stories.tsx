@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { expect } from "storybook/test";
 
+import {
+  ColorBackgroundDefaultSecondary,
+  ColorTextDefaultSecondary,
+} from "../../../style-dictionary-dist/variables.js";
 import { ChoiceFieldGroup } from ".";
 
 const meta: Meta<typeof ChoiceFieldGroup> = {
@@ -11,6 +15,19 @@ const meta: Meta<typeof ChoiceFieldGroup> = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  render: (args) => {
+    const [value, setValue] = useState(args.value);
+    // Docs renders several stories in one document; a shared radio `name` would merge them into one group.
+    const name = `${args.name}-${useId()}`;
+    return (
+      <ChoiceFieldGroup
+        {...args}
+        name={name}
+        value={value}
+        onChange={setValue}
+      />
+    );
+  },
   argTypes: {
     orientation: {
       control: {
@@ -78,7 +95,6 @@ const checkboxOptions = [
   },
 ];
 
-// Hierarchical options for demonstrating nested structure
 const hierarchicalOptions = [
   {
     label: "전체선택",
@@ -149,17 +165,7 @@ export const RadioGroup: Story = {
     options: radioOptions,
     orientation: "vertical",
     required: true,
-  },
-  render: (args) => {
-    const [value, setValue] = useState<string>("option1");
-
-    return (
-      <ChoiceFieldGroup
-        {...args}
-        value={value}
-        onChange={(val) => setValue(val as string)}
-      />
-    );
+    value: "option1",
   },
 };
 
@@ -172,17 +178,7 @@ export const CheckboxGroup: Story = {
       "This is a group of checkboxes. You can select multiple options.",
     options: checkboxOptions,
     orientation: "vertical",
-  },
-  render: (args) => {
-    const [value, setValue] = useState<string[]>(["optionA"]);
-
-    return (
-      <ChoiceFieldGroup
-        {...args}
-        value={value}
-        onChange={(val) => setValue(val as string[])}
-      />
-    );
+    value: ["optionA"],
   },
 };
 
@@ -191,34 +187,13 @@ export const HorizontalRadioGroup: Story = {
     ...RadioGroup.args,
     orientation: "horizontal",
   },
-  render: (args) => {
-    const [value, setValue] = useState<string>("option1");
-
-    return (
-      <ChoiceFieldGroup
-        {...args}
-        value={value}
-        onChange={(val) => setValue(val as string)}
-      />
-    );
-  },
 };
 
 export const WithError: Story = {
   args: {
     ...RadioGroup.args,
     error: "Please select a valid option",
-  },
-  render: (args) => {
-    const [value, setValue] = useState<string>("");
-
-    return (
-      <ChoiceFieldGroup
-        {...args}
-        value={value}
-        onChange={(val) => setValue(val as string)}
-      />
-    );
+    value: "",
   },
 };
 
@@ -227,20 +202,8 @@ export const DisabledGroup: Story = {
     ...CheckboxGroup.args,
     disabled: true,
   },
-  render: (args) => {
-    const [value, setValue] = useState<string[]>(["optionA"]);
-
-    return (
-      <ChoiceFieldGroup
-        {...args}
-        value={value}
-        onChange={(val) => setValue(val as string[])}
-      />
-    );
-  },
 };
 
-// 계층적 구조와 indeterminate 상태를 보여주는 스토리
 export const HierarchicalCheckboxGroup: Story = {
   args: {
     type: "checkbox",
@@ -249,7 +212,6 @@ export const HierarchicalCheckboxGroup: Story = {
     orientation: "vertical",
   },
   render: (args) => {
-    // 일부 항목만 선택된 초기 상태 설정 (프론트엔드팀의 리액트 담당, 디자인팀의 UX 디자이너)
     const [value, setValue] = useState<string[]>(["react", "ux"]);
 
     return (
@@ -263,7 +225,7 @@ export const HierarchicalCheckboxGroup: Story = {
           style={{
             marginTop: "20px",
             padding: "10px",
-            backgroundColor: "#f5f5f5",
+            backgroundColor: ColorBackgroundDefaultSecondary,
             borderRadius: "4px",
           }}
         >
@@ -271,7 +233,7 @@ export const HierarchicalCheckboxGroup: Story = {
           <pre style={{ overflow: "auto", maxHeight: "150px" }}>
             {JSON.stringify(value, null, 2)}
           </pre>
-          <p style={{ fontSize: "14px", color: "#666" }}>
+          <p style={{ fontSize: "14px", color: ColorTextDefaultSecondary }}>
             <strong>주의:</strong> 리액트 담당과 UX 디자이너만 선택된 상태이므로
             프론트엔드팀, 개발팀, 부서, 디자인팀에 indeterminate 상태가
             표시됩니다.
