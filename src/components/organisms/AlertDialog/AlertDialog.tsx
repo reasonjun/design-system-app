@@ -1,17 +1,27 @@
 import { useEffect, useId, useRef } from "react";
 import { Button } from "../../atoms/Button/index.js";
 import { IconButton } from "../../atoms/IconButton/index.js";
-import { useAlertDialogAction, useAlertDialogState } from "./hooks.js";
+import CloseIcon from "../../../assets/icons/close.svg?react";
+import { AlertDialogOptions } from "./AlertDialogContext.js";
 import styles from "./styles.module.scss";
 
-interface AlertDialogProps {
-  onConfirm?: () => void;
+interface AlertDialogProps extends AlertDialogOptions {
+  isShown: boolean;
+  onConfirm: () => void;
+  /** 취소·Esc·닫기 버튼으로 닫힐 때 호출된다. */
+  onCancel: () => void;
 }
 
-export const AlertDialog = ({ onConfirm }: AlertDialogProps) => {
-  const { isShown, title, message, okButtonLabel, cancelButtonLabel } =
-    useAlertDialogState();
-  const { hideAlertDialog } = useAlertDialogAction();
+/** AlertDialogProvider가 그리는 표시 전용 컴포넌트. 패키지에서 내보내지 않는다. */
+export const AlertDialog = ({
+  isShown,
+  title,
+  message,
+  okButtonLabel,
+  cancelButtonLabel,
+  onConfirm,
+  onCancel,
+}: AlertDialogProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const headingId = useId();
 
@@ -22,25 +32,24 @@ export const AlertDialog = ({ onConfirm }: AlertDialogProps) => {
     if (!isShown) dialog.close();
   }, [isShown]);
 
-  const handleOkClick = () => {
-    onConfirm?.();
-    hideAlertDialog();
-  };
-
   return (
     <dialog
       ref={dialogRef}
       className={styles.alertdialog}
       role="alertdialog"
       aria-labelledby={headingId}
-      onClose={hideAlertDialog}
+      // close 이벤트는 비동기로 온다. 그사이 다시 열렸다면 이전 닫힘의 이벤트이므로 무시한다.
+      onClose={(event) => {
+        if (!event.currentTarget.open) onCancel();
+      }}
     >
       <IconButton
         className={styles.close}
         label="닫기"
-        icon="×"
+        icon={<CloseIcon role="presentation" />}
         variant="subtle"
-        onClick={hideAlertDialog}
+        size="small"
+        onClick={onCancel}
       />
       <div className={styles.content}>
         <h2 id={headingId} className={styles.heading}>
@@ -50,12 +59,12 @@ export const AlertDialog = ({ onConfirm }: AlertDialogProps) => {
       </div>
       <footer className={styles.footer}>
         {cancelButtonLabel && (
-          <Button type="button" variant="secondary" onClick={hideAlertDialog}>
+          <Button type="button" variant="secondary" onClick={onCancel}>
             {cancelButtonLabel}
           </Button>
         )}
         {okButtonLabel && (
-          <Button type="button" onClick={handleOkClick}>
+          <Button type="button" onClick={onConfirm}>
             {okButtonLabel}
           </Button>
         )}

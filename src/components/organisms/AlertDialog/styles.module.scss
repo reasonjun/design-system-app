@@ -1,59 +1,54 @@
-@use '../../../style-dictionary-dist/variables.scss';
+@use "../../../style-dictionary-dist/variables.scss";
 
 .alertdialog {
-    max-width: min(640px, calc(100% - 32px));
-    padding: 48px;
-    border: none;
-    color: #{variables.$color-text-default-primary};
-    border-radius: 12px;
-    background-color: #{variables.$color-background-default-primary};
-    box-shadow: 0 4px 12px #{variables.$color-base-black-200};
+  max-width: min(640px, calc(100% - 32px));
+  padding: 48px;
+  border: none;
+  color: #{variables.$color-text-default-primary};
+  border-radius: 12px;
+  background-color: #{variables.$color-background-default-primary};
+  box-shadow: 0 4px 12px #{variables.$color-base-black-200};
 }
 
 .alertdialog::backdrop {
-    background-color: #{variables.$color-background-utilities-overlay};
+  background-color: #{variables.$color-background-utilities-overlay};
 }
 
 .close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #{variables.$color-icon-default-primary};
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }
 
 .content {
-    margin-bottom: 24px;
-    text-align: left;
+  margin-bottom: 24px;
+  text-align: left;
 
-    .heading {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-        color: #{variables.$color-text-default-primary};
-    }
+  .heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #{variables.$color-text-default-primary};
+  }
 
-    .body {
-        font-size: 1.4rem;
-        color: #{variables.$color-text-default-secondary};
-    }
+  .body {
+    font-size: 1.4rem;
+    color: #{variables.$color-text-default-secondary};
+  }
 }
 
 .footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .footer button {
-    margin: 0 4px;
+  margin: 0 4px;
 }
 
 @media screen and (max-width: 767px) {
-    .alertdialog {
-        padding: 48px 24px;
-    }
+  .alertdialog {
+    padding: 48px 24px;
+  }
 }
