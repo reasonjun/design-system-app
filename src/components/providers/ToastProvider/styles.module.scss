@@ -2,7 +2,7 @@
 
 $offset-top: var(--toast-offset-top, #{variables.$space-800});
 
-// Positioning layer only. Apps with a fixed header can push toasts below it with --toast-offset-top.
+// 위치만 잡는 층. 고정 헤더가 있는 앱은 --toast-offset-top으로 토스트를 헤더 아래로 내린다.
 .viewport {
   position: fixed;
   top: $offset-top;
@@ -18,7 +18,7 @@ $offset-top: var(--toast-offset-top, #{variables.$space-800});
   pointer-events: none;
 }
 
-// The notifications landmark. Sized to its toasts, so the F8 focus ring wraps only them.
+// 알림 랜드마크. 크기가 토스트에 맞춰지므로 F8 포커스 링이 토스트만 감싼다.
 .stack {
   display: flex;
   flex-direction: column;

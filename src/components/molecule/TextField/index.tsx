@@ -16,7 +16,6 @@ export interface TextFieldProps extends Omit<InputProps, "id" | "aria-label"> {
   id?: string;
   /** 라벨을 화면에서만 숨길지 여부 (보조기기에는 읽힌다) */
   isLabelHidden?: boolean;
-  /** 필수 입력 여부 */
   required?: boolean;
   ref?: Ref<HTMLInputElement>;
 }

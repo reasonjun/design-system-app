@@ -16,7 +16,6 @@ export interface ToastAction {
   showError: (message: string) => ToastId;
   /** 토스트 하나를 닫는다. 이미 없으면 아무것도 하지 않는다. */
   dismiss: (id: ToastId) => void;
-  /** 모든 토스트를 닫는다. */
   dismissAll: () => void;
 }
 

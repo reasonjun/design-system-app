@@ -6,10 +6,10 @@ const preview: Preview = {
     layout: "centered",
 
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: "error"
+      // 'todo' - 접근성 위반을 테스트 UI에만 표시
+      // 'error' - 접근성 위반 시 CI 실패
+      // 'off' - 접근성 검사 생략
+      test: "error",
     },
   },
 };

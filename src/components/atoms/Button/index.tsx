@@ -8,23 +8,16 @@ export type ButtonSize = "large" | "medium" | "small";
 export type ButtonIconPosition = "left" | "right";
 
 export interface ButtonProps extends ComponentProps<"button"> {
-  /** HTML 버튼 타입 */
   type?: ButtonType;
-  /** 버튼 라벨 */
   children: string;
-  /** 버튼 스타일 타입 */
   variant?: ButtonVariant;
-  /** 버튼 크기 */
   size?: ButtonSize;
-  /** 아이콘 표시 여부 */
   showIcon?: boolean;
-  /** 아이콘 위치 */
   iconPosition?: ButtonIconPosition;
-  /** 아이콘 컴포넌트 */
   icon?: ReactNode;
 }
 
-/** Primary UI component for user interaction */
+/** 사용자 동작을 받는 기본 버튼 */
 export const Button = ({
   children,
   type = "button",

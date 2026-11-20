@@ -6,13 +6,9 @@ import { DescriptionMessage } from "../../atoms/DescriptionMessage/index.js";
 import { ErrorMessage } from "../../atoms/ErrorMessage/index.js";
 
 interface SectionHeaderProps {
-  /** 제목 */
   title?: string;
-  /** 설명 */
   description?: string;
-  /** 설명을 위한 ID */
   descriptionId?: string;
-  /** 제목 태그 */
   HeadingTag: ElementType;
 }
 
@@ -37,23 +33,14 @@ const SectionHeader = ({
 };
 
 export interface FormProps {
-  /** Form의 필드와 섹션 요소들 */
   children: ReactNode;
-  /** Form 액션 요소들 */
   actions?: ReactNode;
-  /** Form 제출 핸들러 */
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
-  /** Form의 제목(레이블) */
   title?: string;
-  /** Form 설명 */
   description?: string;
-  /** Form이 현재 제출 중인지 여부 */
   isSubmitting?: boolean;
-  /** 추가 클래스 이름 */
   className?: string;
-  /** Form의 ID */
   id?: string;
-  /** Form의 오류 메시지 */
   error?: string;
 }
 
@@ -130,15 +117,10 @@ export const Form = ({
 };
 
 export interface FormSectionProps {
-  /** 섹션의 자식 요소들 */
   children: ReactNode;
-  /** 섹션 제목 */
   title?: string;
-  /** 섹션 설명 */
   description?: string;
-  /** 추가 클래스 이름 */
   className?: string;
-  /** 섹션 ID */
   id?: string;
 }
 
@@ -178,9 +160,7 @@ export const FormSection = ({
 };
 
 export interface FormActionsProps {
-  /** 버튼 등의 액션 컴포넌트들 */
   children: ReactNode;
-  /** 추가 클래스 이름 */
   className?: string;
 }
 

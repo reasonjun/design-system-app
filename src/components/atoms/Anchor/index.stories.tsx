@@ -24,7 +24,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 기본 앵커
 export const Default: Story = {
   args: {
     href: "https://example.com",
@@ -41,7 +40,6 @@ export const ExternalLink: Story = {
   },
 };
 
-// 접근성 개선 예제
 export const AccessibleAnchor: Story = {
   args: {
     ...Default.args,

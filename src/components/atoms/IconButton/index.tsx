@@ -6,17 +6,13 @@ export type IconButtonVariant = "primary" | "neutral" | "subtle";
 export type IconButtonSize = "medium" | "small";
 
 export interface IconButtonProps extends ComponentProps<"button"> {
-  /** 버튼 라벨 */
   label: string;
-  /** 아이콘 내용 */
   icon: ReactNode;
-  /** 버튼 타입 (스타일) */
   variant?: IconButtonVariant;
-  /** 버튼 크기 */
   size?: IconButtonSize;
 }
 
-/** Primary UI component for user interaction */
+/** 아이콘만 보이는 버튼. `label`은 화면에 보이지 않고 보조기기에 읽힌다. */
 export const IconButton = ({
   label,
   icon,

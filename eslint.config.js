@@ -13,10 +13,8 @@ const gitignorePath = fileURLToPath(new URL(".gitignore", import.meta.url));
 export default defineConfig(
   includeIgnoreFile(gitignorePath, "Imported .gitignore patterns"),
 
-  // JavaScript
   js.configs.recommended,
 
-  // TypeScript
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -26,19 +24,8 @@ export default defineConfig(
   },
   tseslint.configs.strict,
   tseslint.configs.stylistic,
-  {
-    // `...rest`로 키를 빼내는 구조 분해는 객체에서 키를 제외하는 용도로 쓴다.
-    rules: {
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { ignoreRestSiblings: true },
-      ],
-    },
-  },
 
-  // 스토리북
   storybook.configs["flat/recommended"],
 
-  // 프리티어
   eslintConfigPrettier,
 );

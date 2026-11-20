@@ -14,11 +14,9 @@ export interface LoginProps {
   usernameProps?: Omit<Partial<TextFieldProps>, "label" | "type">;
   passwordProps?: Omit<Partial<TextFieldProps>, "label" | "type">;
 
-  // UI 상태 props
   isLoading?: boolean;
   formError?: string;
 
-  // 이벤트 핸들러 props
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   onSignUpClick: () => void;
 

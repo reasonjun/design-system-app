@@ -5,13 +5,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Login } from ".";
 
-// Zod 스키마 정의 (스토리 테스트용)
 const loginSchema = z.object({
   username: z.string().min(1, "아이디를 입력해주세요"),
   password: z.string().min(6, "비밀번호는 6자 이상이어야 합니다"),
 });
 
-// 래퍼 컴포넌트의 props 인터페이스 정의
 interface LoginWrapperProps {
   defaultUsername?: string;
   defaultPassword?: string;
@@ -63,7 +61,6 @@ const LoginWithHookForm = (args: LoginWrapperProps) => {
   );
 };
 
-// 스토리북 메타데이터 정의
 // LoginWithHookForm을 메타에 사용하여 래퍼 컴포넌트의 props가 스토리에서 사용되도록 함
 const meta = {
   title: "Organisms/Login",
@@ -77,7 +74,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 기본 로그인 스토리
 export const Default: Story = {
   args: {
     defaultUsername: "",
@@ -96,7 +92,6 @@ export const Default: Story = {
   },
 };
 
-// 로딩 중 상태 스토리
 export const Loading: Story = {
   args: {
     ...Default.args,
@@ -104,7 +99,6 @@ export const Loading: Story = {
   },
 };
 
-// 에러 상태 스토리
 export const WithError: Story = {
   args: {
     ...Default.args,
@@ -112,7 +106,6 @@ export const WithError: Story = {
   },
 };
 
-// 미리 채워진 폼 스토리
 export const Prefilled: Story = {
   args: {
     ...Default.args,
@@ -121,7 +114,6 @@ export const Prefilled: Story = {
   },
 };
 
-// 필드 에러가 있는 스토리
 export const WithFieldErrors: Story = {
   args: {
     ...Default.args,

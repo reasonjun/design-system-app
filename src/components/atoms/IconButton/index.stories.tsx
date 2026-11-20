@@ -3,7 +3,6 @@ import { fn } from "storybook/test";
 
 import { IconButton } from ".";
 
-// 명시적 타입 주석 추가 (as const 사용)
 const meta = {
   title: "Atoms/IconButton",
   component: IconButton,
