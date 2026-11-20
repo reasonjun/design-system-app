@@ -1,16 +1,16 @@
+import { defineConfig, includeIgnoreFile } from "eslint/config";
 import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
+import { reactRefresh } from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 import storybook from "eslint-plugin-storybook";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
-import { includeIgnoreFile } from "@eslint/compat";
 import { fileURLToPath, URL } from "node:url";
 
 const gitignorePath = fileURLToPath(new URL(".gitignore", import.meta.url));
 
-export default tseslint.config(
+export default defineConfig(
   includeIgnoreFile(gitignorePath, "Imported .gitignore patterns"),
 
   // JavaScript
@@ -20,27 +20,25 @@ export default tseslint.config(
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
-      ecmaVersion: 2020,
       globals: globals.browser,
     },
-    plugins: {
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-    },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
-      ],
-    },
+    extends: [reactHooks.configs.flat.recommended, reactRefresh.configs.vite()],
   },
   tseslint.configs.strict,
   tseslint.configs.stylistic,
+  {
+    // `...rest`로 키를 빼내는 구조 분해는 객체에서 키를 제외하는 용도로 쓴다.
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { ignoreRestSiblings: true },
+      ],
+    },
+  },
 
-  // Storybook
+  // 스토리북
   storybook.configs["flat/recommended"],
 
-  // Prettier
+  // 프리티어
   eslintConfigPrettier,
 );
