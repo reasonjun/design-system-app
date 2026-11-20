@@ -1,57 +1,52 @@
-@use '../../../../style-dictionary-dist/variables.scss';
+@use "../../../../style-dictionary-dist/variables.scss";
 
 .module {
   display: flex;
-  justify-content: center;
   align-items: center;
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  padding: 1em 2em;
-  font-size: 2rem;
-  border-radius: 8px;
-  text-align: center;
+  gap: #{variables.$space-300};
+  padding: #{variables.$space-300} #{variables.$space-400};
+  font-size: 1rem;
+  border-radius: #{variables.$radius-200};
   color: #{variables.$color-base-white-1000};
   transition-duration: 0.4s;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
-.module svg {
-  margin-right: 16px;
+.message {
+  margin: 0;
 }
 
-.module path {
-  fill: #{variables.$color-base-white-1000};
+.module > svg {
+  flex-shrink: 0;
+  width: #{variables.$icon-small};
+  height: #{variables.$icon-small};
 }
 
-.module[data-style="busy"] {
-  background-color: #{variables.$color-base-gray-600};
+.module button.close {
+  // 40px 클릭 영역은 유지하면서 오류 토스트가 성공 토스트보다 높아지지 않게 한다.
+  margin: #{variables.$space-negative-200} #{variables.$space-negative-200}
+    #{variables.$space-negative-200} 0;
+  color: #{variables.$color-base-white-1000};
+
+  &:not(:disabled):hover {
+    background-color: #{variables.$color-base-white-200};
+  }
 }
 
-.module[data-style="succeed"] {
+.module[data-style="success"] {
   background-color: #{variables.$color-base-green-700};
 }
 
-.module[data-style="failed"] {
+.module[data-style="error"] {
   background-color: #{variables.$color-base-red-600};
 }
 
 .module[data-mounted="false"] {
   opacity: 0;
-  transform: translateY(64px);
+  transform: translateY(calc(-1 * #{variables.$space-1600}));
 }
 
 .module[data-mounted="true"] {
   opacity: 1;
   transform: translateY(0px);
-}
-
-@media screen and (max-width: 767px) {
-  .module {
-    bottom: 32px;
-    right: 32px;
-    padding: 1em 2em;
-    font-size: 2rem;
-    border-radius: 8px;
-  }
 }
