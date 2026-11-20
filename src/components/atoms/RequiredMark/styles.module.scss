@@ -1,0 +1,11 @@
+@use "../../../style-dictionary-dist/variables.scss";
+@use "../../../styles/a11y";
+
+.mark {
+  color: #{variables.$color-text-danger-default};
+  margin-left: #{variables.$space-100};
+}
+
+.visually-hidden {
+  @include a11y.visually-hidden;
+}

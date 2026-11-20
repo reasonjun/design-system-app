@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useRef, useState } from "react";
 
-import { ColorTextDefaultSecondary } from "../../../style-dictionary-dist/variables.js";
 import { Input } from ".";
 
-const meta: Meta<typeof Input> = {
+const meta = {
   title: "Atoms/Input",
   component: Input,
   tags: ["autodocs"],
@@ -17,7 +15,7 @@ const meta: Meta<typeof Input> = {
       control: "boolean",
     },
   },
-};
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -43,54 +41,5 @@ export const Disabled: Story = {
     disabled: true,
     defaultValue: "Disabled input",
     label: "Disabled Input",
-  },
-};
-
-export const Controlled: Story = {
-  render: () => {
-    const [value, setValue] = useState("");
-
-    return (
-      <div>
-        <Input
-          placeholder="Type something..."
-          label="Controlled Input"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <p
-          style={{
-            marginTop: "8px",
-            fontSize: "12px",
-            color: ColorTextDefaultSecondary,
-          }}
-        >
-          Value: "{value}"
-        </p>
-      </div>
-    );
-  },
-};
-
-// React 19 스타일 ref 사용 예시
-export const WithRef: Story = {
-  render: () => {
-    const inputRef = useRef<HTMLInputElement>(null);
-
-    return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <Input
-          ref={inputRef}
-          placeholder="Click button to focus"
-          label="Input with Ref"
-        />
-        <button
-          onClick={() => inputRef.current?.focus()}
-          style={{ padding: "8px 16px", width: "fit-content" }}
-        >
-          Focus Input
-        </button>
-      </div>
-    );
   },
 };

@@ -7,3 +7,4 @@ export * from "./Anchor/index.js";
 export * from "./IconButton/index.js";
 export * from "./ErrorMessage/index.js";
 export * from "./DescriptionMessage/index.js";
+export * from "./RequiredMark/index.js";

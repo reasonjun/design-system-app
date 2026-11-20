@@ -1,4 +1,4 @@
-@use '../../../style-dictionary-dist/variables.scss';
+@use "../../../style-dictionary-dist/variables.scss";
 
 .module {
   display: flex;
@@ -39,7 +39,8 @@
     background-color: #{variables.$color-background-brand-tertiary};
 
     &:not(:disabled):hover {
-      border: #{variables.$stroke-border} solid #{variables.$color-border-neutral-default};
+      border: #{variables.$stroke-border} solid
+        #{variables.$color-border-neutral-default};
     }
   }
 

@@ -5,7 +5,8 @@
   width: #{variables.$depth-400};
   height: #{variables.$depth-400};
   background-color: #{variables.$color-background-default-primary};
-  border: #{variables.$stroke-border} solid #{variables.$color-border-brand-primary};
+  border: #{variables.$stroke-border} solid
+    #{variables.$color-border-brand-primary};
   border-radius: #{variables.$radius-100};
   position: relative;
   cursor: pointer;
@@ -21,7 +22,7 @@
       left: 50%;
       width: 4px;
       height: 8px;
-      border: solid white;
+      border: solid #{variables.$color-icon-brand-on-brand};
       border-width: 0 2px 2px 0;
       transform: translate(-50%, -60%) rotate(45deg);
     }

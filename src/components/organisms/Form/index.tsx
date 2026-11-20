@@ -5,7 +5,6 @@ import styles from "./styles.module.scss";
 import { DescriptionMessage } from "../../atoms/DescriptionMessage/index.js";
 import { ErrorMessage } from "../../atoms/ErrorMessage/index.js";
 
-// SectionHeader 컴포넌트
 interface SectionHeaderProps {
   /** 제목 */
   title?: string;
@@ -37,7 +36,6 @@ const SectionHeader = ({
   );
 };
 
-// Form 컴포넌트
 export interface FormProps {
   /** Form의 필드와 섹션 요소들 */
   children: ReactNode;
@@ -62,6 +60,10 @@ export interface FormProps {
 /**
  * Form 컴포넌트는 다양한 입력 요소들을 포함하는 컨테이너입니다.
  * 기본적인 레이아웃, 상태 표시 및 폼 액션을 처리합니다.
+ *
+ * 검증 정책: 검증 표시는 디자인 시스템이 맡습니다. 브라우저 기본 검증은 끄고(`noValidate`),
+ * 필수 여부는 `aria-required`로, 오류는 각 입력의 `error` prop과 폼의 `error` prop으로 알립니다.
+ * 입력 컴포넌트에 네이티브 `required` 속성을 넣지 않습니다.
  */
 export const Form = ({
   children,
@@ -76,9 +78,8 @@ export const Form = ({
   ...props
 }: FormProps) => {
   const generatedId = useId();
-  // Use a unified ID reference - prefer the provided ID if available, otherwise use generated ID
   const formId = id || generatedId;
-  const descriptionId = description ? `${formId}-description` : undefined;
+  const descriptionId = (description && `${formId}-description`) || undefined;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -107,11 +108,15 @@ export const Form = ({
         HeadingTag="h2"
       />
       <div className={styles.fields}>{children}</div>
-      {error && <ErrorMessage id={`${formId}-error`}>{error}</ErrorMessage>}
+      {/* 오류는 아래 라이브 영역이 읽어 주므로, 보이는 문구는 보조기기에서 숨긴다. */}
+      {error && <ErrorMessage aria-hidden="true">{error}</ErrorMessage>}
       {actions && <FormActions>{actions}</FormActions>}
-      {/* 라이브 영역은 항상 마운트돼 있어야 내용 변화가 스크린리더에 읽힌다 */}
-      <span role="status" className={styles["sr-only"]}>
-        {isSubmitting ? "제출 중..." : ""}
+      {/* 라이브 영역은 항상 마운트돼 있어야 내용 변화가 스크린 리더에 읽힌다. */}
+      <span role="status" className={styles["visually-hidden"]}>
+        {isSubmitting && "제출 중..."}
+      </span>
+      <span role="alert" className={styles["visually-hidden"]}>
+        {error}
       </span>
       {isSubmitting && (
         <div className={styles["loading-indicator"]} aria-hidden="true">
@@ -124,7 +129,6 @@ export const Form = ({
   );
 };
 
-// FormSection 컴포넌트
 export interface FormSectionProps {
   /** 섹션의 자식 요소들 */
   children: ReactNode;
@@ -151,9 +155,9 @@ export const FormSection = ({
   ...props
 }: FormSectionProps) => {
   const generatedId = useId();
-  // Use a unified ID reference - prefer the provided ID if available, otherwise use generated ID
   const sectionId = id || generatedId;
-  const descriptionId = description ? `${sectionId}-description` : undefined;
+  const descriptionId =
+    (description && `${sectionId}-description`) || undefined;
 
   return (
     <section
@@ -173,7 +177,6 @@ export const FormSection = ({
   );
 };
 
-// FormActions 컴포넌트
 export interface FormActionsProps {
   /** 버튼 등의 액션 컴포넌트들 */
   children: ReactNode;

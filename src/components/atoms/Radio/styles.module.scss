@@ -1,4 +1,4 @@
-@use '../../../style-dictionary-dist/variables.scss';
+@use "../../../style-dictionary-dist/variables.scss";
 
 .module {
   appearance: none;
@@ -9,16 +9,17 @@
   width: #{variables.$depth-400};
   height: #{variables.$depth-400};
   background-color: #{variables.$color-background-default-primary};
-  border: #{variables.$stroke-border} solid #{variables.$color-border-brand-primary};
+  border: #{variables.$stroke-border} solid
+    #{variables.$color-border-brand-primary};
   border-radius: #{variables.$radius-full};
   cursor: pointer;
 
   &::after {
-    content: '';
+    content: "";
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #{variables.$color-border-brand-primary};
+    background-color: #{variables.$color-background-brand-primary};
     transform: scale(0);
     transition: transform 0.2s ease-in-out;
   }
@@ -33,7 +34,7 @@
     cursor: not-allowed;
 
     &::after {
-      background-color: #{variables.$color-icon-disabled-default};
+      background-color: #{variables.$color-icon-disabled-on-disabled};
     }
   }
 }

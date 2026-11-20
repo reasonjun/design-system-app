@@ -1,6 +1,11 @@
-@use '../../../style-dictionary-dist/variables.scss';
+@use "../../../style-dictionary-dist/variables.scss";
+@use "../../../styles/a11y";
 
 .module {
+  // flex로 가운데 정렬한다. 인라인 svg는 텍스트 줄 상자 위에 놓여 버튼을 키운다.
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: #{variables.$radius-full};
 
@@ -25,7 +30,8 @@
   &.neutral {
     color: #{variables.$color-icon-neutral-default};
     background-color: #{variables.$color-background-brand-secondary};
-    border: #{variables.$stroke-border} solid #{variables.$color-border-neutral-tertiary};
+    border: #{variables.$stroke-border} solid
+      #{variables.$color-border-neutral-tertiary};
 
     &:not(:disabled):hover {
       background-color: #{variables.$color-background-brand-secondary-hover};
@@ -42,38 +48,21 @@
   }
 
   &.medium {
-    min-width: #{variables.$icon-medium};
-    min-height: #{variables.$icon-medium};
     padding: #{variables.$space-300};
   }
 
   &.small {
-    min-width: #{variables.$icon-small};
-    min-height: #{variables.$icon-small};
     padding: #{variables.$space-200};
   }
 
-  svg,
-  svg * {
-    fill: currentColor;
+  // 어떤 svg가 들어와도 아이콘 크기와 색은 버튼이 정한다 (아이콘은 currentColor를 쓴다).
+  svg {
+    flex-shrink: 0;
+    width: #{variables.$icon-small};
+    height: #{variables.$icon-small};
   }
 
-  // TODO: utilities 파일로 이동
-  .visually-hidden,
-  .visually-hidden-focusable:not(:focus):not(:focus-within) {
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  // TODO: utilities 파일로 이동
-  .visually-hidden:not(caption),
-  .visually-hidden-focusable:not(:focus):not(:focus-within):not(caption) {
-    position: absolute;
+  .visually-hidden {
+    @include a11y.visually-hidden;
   }
 }

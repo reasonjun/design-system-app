@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DescriptionMessage } from ".";
 
-const meta: Meta<typeof DescriptionMessage> = {
+const meta = {
   title: "Atoms/DescriptionMessage",
   component: DescriptionMessage,
   tags: ["autodocs"],
-};
+} satisfies Meta<typeof DescriptionMessage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

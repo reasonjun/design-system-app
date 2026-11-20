@@ -4,12 +4,12 @@ import { fn } from "storybook/test";
 import { IconButton } from ".";
 
 // 명시적 타입 주석 추가 (as const 사용)
-const meta: Meta<typeof IconButton> = {
+const meta = {
   title: "Atoms/IconButton",
   component: IconButton,
   tags: ["autodocs"],
   args: { onClick: fn() },
-};
+} satisfies Meta<typeof IconButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -29,3 +29,15 @@ const iconSvg = (
 );
 
 export const Default: Story = { args: { icon: iconSvg, label: "Search" } };
+
+export const Neutral: Story = {
+  args: { ...Default.args, variant: "neutral" },
+};
+
+export const Subtle: Story = {
+  args: { ...Default.args, variant: "subtle" },
+};
+
+export const Disabled: Story = {
+  args: { ...Default.args, disabled: true },
+};

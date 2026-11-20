@@ -7,13 +7,5 @@ interface Props extends ComponentPropsWithoutRef<"p"> {
 }
 
 export const ErrorMessage = ({ className, ref, ...props }: Props) => {
-  return (
-    <p
-      className={clsx(className, styles.module)}
-      role="alert"
-      aria-live="off"
-      {...props}
-      ref={ref}
-    />
-  );
+  return <p className={clsx(className, styles.module)} {...props} ref={ref} />;
 };

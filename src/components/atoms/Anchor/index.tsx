@@ -15,7 +15,13 @@ export interface AnchorProps extends ComponentProps<"a"> {
   screenReaderText?: string;
 }
 
-/** Primary UI component for navigation and links */
+// 새 창으로 여는 링크는 열린 페이지가 window.opener로 이 페이지를 조작하지 못하게 막는다.
+const getSafeRel = (target: string, rel?: string) => {
+  if (target !== "_blank") return rel;
+  return clsx(rel, "noopener noreferrer");
+};
+
+/** 다른 페이지나 위치로 이동하는 링크 */
 export const Anchor = ({
   children,
   className,
@@ -25,19 +31,11 @@ export const Anchor = ({
   screenReaderText,
   ...props
 }: AnchorProps) => {
-  // 외부 링크에 대한 보안 속성 자동 추가
-  const safeRel =
-    target === "_blank"
-      ? rel
-        ? `${rel} noopener noreferrer`
-        : "noopener noreferrer"
-      : rel;
-
   return (
     <a
       href={href}
       target={target}
-      rel={safeRel}
+      rel={getSafeRel(target, rel)}
       className={clsx(className, styles.module)}
       aria-label={screenReaderText}
       {...props}

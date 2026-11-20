@@ -2,7 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Anchor } from ".";
 
-const meta: Meta<typeof Anchor> = {
+/**
+ * ## 접근성 고려사항
+ * - 의미 있는 링크 텍스트 사용 ('여기를 클릭하세요' 대신 콘텐츠 설명)
+ * - 외부 링크에는 자동으로 `rel="noopener noreferrer"` 추가
+ * - 포커스 스타일 유지
+ */
+const meta = {
   title: "Atoms/Anchor",
   component: Anchor,
   tags: ["autodocs"],
@@ -13,19 +19,7 @@ const meta: Meta<typeof Anchor> = {
       description: "링크 타겟",
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        component: `
-## 접근성 고려사항
-- 의미 있는 링크 텍스트 사용 ('여기를 클릭하세요' 대신 콘텐츠 설명)
-- 외부 링크에는 자동으로 \`rel="noopener noreferrer"\` 추가
-- 포커스 스타일 유지
-        `,
-      },
-    },
-  },
-};
+} satisfies Meta<typeof Anchor>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -38,19 +32,12 @@ export const Default: Story = {
   },
 };
 
-// 외부 링크 예제
+/** 외부 링크는 자동으로 `rel="noopener noreferrer"`가 추가됩니다. */
 export const ExternalLink: Story = {
   args: {
     ...Default.args,
     children: "외부 링크",
     target: "_blank",
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: '외부 링크는 자동으로 `rel="noopener noreferrer"`가 추가됩니다.',
-      },
-    },
   },
 };
 

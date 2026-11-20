@@ -5,72 +5,74 @@ import styles from "./styles.module.scss";
 import { Input, InputProps } from "../../atoms/Input/index.js";
 import { ErrorMessage } from "../../atoms/ErrorMessage/index.js";
 import { DescriptionMessage } from "../../atoms/DescriptionMessage/index.js";
+import { RequiredMark } from "../../atoms/RequiredMark/index.js";
 
 export interface TextFieldProps extends Omit<InputProps, "id" | "aria-label"> {
   label: string;
-  /** Optional helper text to be displayed below the input */
+  /** 입력란 아래에 보여 줄 도움말 */
   helperText?: string;
-  /** Error message to be displayed if input is invalid */
+  /** 입력값이 잘못됐을 때 보여 줄 오류 메시지. 있으면 도움말 대신 보인다. */
   error?: string;
   id?: string;
-  /** Determines if the label should be hidden visually */
-  hideLabel?: boolean;
-  /** Determines if the field is required */
+  /** 라벨을 화면에서만 숨길지 여부 (보조기기에는 읽힌다) */
+  isLabelHidden?: boolean;
+  /** 필수 입력 여부 */
   required?: boolean;
   ref?: Ref<HTMLInputElement>;
 }
 
 /**
- * TextField component that combines an Input with a label and optional helper text or error message.
+ * 라벨, 입력란, 도움말 또는 오류 메시지를 묶은 텍스트 필드입니다.
+ *
+ * `required`는 브라우저 기본 검증이 아니라 `aria-required`로 보조기기에만 알립니다.
+ * 빈 값 검사와 오류 표시는 쓰는 쪽이 `error` prop으로 합니다 (Form의 검증 정책 참고).
  */
 export const TextField = ({
   label,
   helperText,
   error,
   id,
-  hideLabel = false,
+  isLabelHidden = false,
   required = false,
   disabled,
   ref,
   ...props
 }: TextFieldProps) => {
   const generatedId = useId();
-  const inputId = id ?? `text-field-${generatedId}`;
-  const isInvalid = !!error;
+  const inputId = id || `text-field-${generatedId}`;
+  const messageId = `${inputId}-message`;
+  const isInvalid = Boolean(error);
+  const hasMessage = Boolean(error || helperText);
 
   return (
-    <div className={clsx(styles.module)}>
+    <div className={styles.module}>
       <label
         htmlFor={inputId}
         className={clsx(
           styles.label,
           disabled && styles.disabled,
-          hideLabel && styles.srOnly,
+          isLabelHidden && styles["visually-hidden"],
         )}
       >
         {label}
-        {required && <span className={styles.required}>*</span>}
+        {required && <RequiredMark shouldAnnounce={false} />}
       </label>
 
       <Input
         id={inputId}
         aria-invalid={isInvalid}
-        aria-describedby={
-          helperText || error ? `${inputId}-helper-text` : undefined
-        }
+        aria-describedby={(hasMessage && messageId) || undefined}
         disabled={disabled}
+        // 네이티브 required가 아니라 aria-required: noValidate가 없는 사용처 폼에서 제출이 막히기 때문이다.
+        aria-required={required || undefined}
         {...props}
         ref={ref}
       />
 
-      {(helperText || error) &&
-        (isInvalid ? (
-          <ErrorMessage id={`${inputId}-helper-text`}>{error}</ErrorMessage>
-        ) : (
-          <DescriptionMessage id={`${inputId}-helper-text`}>
-            {helperText}
-          </DescriptionMessage>
-        ))}
+      {isInvalid && <ErrorMessage id={messageId}>{error}</ErrorMessage>}
+      {!isInvalid && helperText && (
+        <DescriptionMessage id={messageId}>{helperText}</DescriptionMessage>
+      )}
     </div>
   );
 };

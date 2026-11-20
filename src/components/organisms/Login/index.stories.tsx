@@ -17,6 +17,9 @@ interface LoginWrapperProps {
   defaultPassword?: string;
   isLoading?: boolean;
   formError?: string;
+  /** 검증을 기다리지 않고 보여 줄 필드 오류 (예: 서버가 돌려준 오류). */
+  usernameError?: string;
+  passwordError?: string;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   onSignUpClick?: () => void;
   findIdHref: string;
@@ -50,11 +53,11 @@ const LoginWithHookForm = (args: LoginWrapperProps) => {
       findPasswordHref={args.findPasswordHref}
       usernameProps={{
         ...register("username"),
-        error: errors.username?.message,
+        error: args.usernameError ?? errors.username?.message,
       }}
       passwordProps={{
         ...register("password"),
-        error: errors.password?.message,
+        error: args.passwordError ?? errors.password?.message,
       }}
     />
   );
@@ -69,7 +72,7 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-} as Meta<typeof LoginWithHookForm>;
+} satisfies Meta<typeof LoginWithHookForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -118,19 +121,12 @@ export const Prefilled: Story = {
   },
 };
 
-// 필드 에러가 있는 스토리: Login 은 폼 라이브러리 없이도 props 만으로 동작한다
+// 필드 에러가 있는 스토리
 export const WithFieldErrors: Story = {
-  render: () => (
-    <Login
-      onSubmit={(e) => e.preventDefault()}
-      onSignUpClick={() => console.log("회원가입 버튼 클릭")}
-      findIdHref="/find-id"
-      findPasswordHref="/find-password"
-      usernameProps={{ error: "아이디를 입력해주세요" }}
-      passwordProps={{
-        defaultValue: "pwd",
-        error: "비밀번호는 6자 이상이어야 합니다",
-      }}
-    />
-  ),
+  args: {
+    ...Default.args,
+    defaultPassword: "pwd",
+    usernameError: "아이디를 입력해주세요",
+    passwordError: "비밀번호는 6자 이상이어야 합니다",
+  },
 };

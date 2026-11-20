@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { Form, FormSection } from ".";
 
 import { ChoiceFieldGroup } from "../ChoiceFieldGroup/index.js";
@@ -6,7 +7,7 @@ import { Button } from "../../atoms/Button/index.js";
 import { ButtonGroup } from "../../molecule/ButtonGroup/index.js";
 import { TextField } from "../../molecule/TextField/index.js";
 
-const meta: Meta<typeof Form> = {
+const meta = {
   component: Form,
   title: "Organisms/Form",
   tags: ["autodocs"],
@@ -16,10 +17,10 @@ const meta: Meta<typeof Form> = {
   argTypes: {
     onSubmit: { action: "submitted" },
   },
-};
+} satisfies Meta<typeof Form>;
 
 export default meta;
-type Story = StoryObj<typeof Form>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -126,5 +127,19 @@ export const WithChoiceFields: Story = {
       </>
     ),
     actions: <Button type="submit">제출</Button>,
+  },
+};
+
+export const WithFormError: Story = {
+  args: {
+    title: "로그인",
+    error: "아이디 또는 비밀번호가 올바르지 않습니다.",
+    children: <TextField label="아이디" />,
+    actions: <Button type="submit">제출</Button>,
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("alert")).toHaveTextContent(
+      "아이디 또는 비밀번호가 올바르지 않습니다.",
+    );
   },
 };

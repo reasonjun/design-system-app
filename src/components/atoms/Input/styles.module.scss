@@ -1,10 +1,11 @@
-@use '../../../style-dictionary-dist/variables.scss';
+@use "../../../style-dictionary-dist/variables.scss";
 
 .module {
   color: #{variables.$color-text-default-primary};
   background-color: #{variables.$color-background-default-primary};
   border-radius: #{variables.$radius-200};
-  border: #{variables.$stroke-border} solid #{variables.$color-border-default-primary};
+  border: #{variables.$stroke-border} solid
+    #{variables.$color-border-default-primary};
   padding: #{variables.$space-400};
 
   &:disabled {

@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ChoiceField } from ".";
 
-const meta: Meta<typeof ChoiceField> = {
+const meta = {
   title: "Molecule/ChoiceField",
   component: ChoiceField,
   parameters: { layout: "padded" },
   tags: ["autodocs"],
-};
+} satisfies Meta<typeof ChoiceField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -26,4 +26,8 @@ export const RadioField: Story = {
     label: "Radio",
     description: "Radio description",
   },
+};
+
+export const Disabled: Story = {
+  args: { ...Default.args, disabled: true },
 };

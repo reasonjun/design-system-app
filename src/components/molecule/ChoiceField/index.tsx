@@ -1,55 +1,48 @@
-import { ChangeEvent, useId } from "react";
 import clsx from "clsx";
+import { ComponentProps, useId } from "react";
 import styles from "./styles.module.scss";
 
 import { Checkbox } from "../../atoms/Checkbox/index.js";
 import { Radio } from "../../atoms/Radio/index.js";
 import { DescriptionMessage } from "../../atoms/DescriptionMessage/index.js";
 
-export interface ChoiceFieldProps {
+/** 나머지 props는 input에 전달된다. */
+export interface ChoiceFieldProps extends Omit<
+  ComponentProps<"input">,
+  "type" | "className" | "style"
+> {
   type: "checkbox" | "radio";
   label?: string;
   description?: string;
-  disabled?: boolean;
-  indeterminate?: boolean; // checkbox only
-  id?: string;
-  name?: string;
-  checked?: boolean;
-  value?: string | number;
-  onChange?: (e?: ChangeEvent<HTMLInputElement>) => void;
+  /** 체크박스에서만 쓰인다. */
+  indeterminate?: boolean;
 }
+
+const INPUT_COMPONENT = { checkbox: Checkbox, radio: Radio };
 
 export const ChoiceField = ({
   type,
   label,
   description,
-  disabled,
   indeterminate,
   id,
-  name,
-  checked,
-  value,
-  onChange,
+  "aria-describedby": describedBy,
   ...props
 }: ChoiceFieldProps) => {
   const generatedId = useId();
-  const inputId = id ?? generatedId;
+  const inputId = id || generatedId;
   const descriptionId = `${inputId}-description`;
-  const InputComponent = type === "checkbox" ? Checkbox : Radio;
+  const InputComponent = INPUT_COMPONENT[type];
 
   return (
-    <div className={clsx(styles.module)}>
+    <div className={styles.module}>
       <InputComponent
-        id={inputId}
-        label={label}
-        disabled={disabled}
-        indeterminate={type === "checkbox" ? indeterminate : undefined}
-        name={name}
-        checked={checked}
-        value={value}
-        onChange={onChange}
-        aria-describedby={description ? descriptionId : undefined}
         {...props}
+        id={inputId}
+        indeterminate={(type === "checkbox" && indeterminate) || undefined}
+        aria-describedby={
+          clsx(describedBy, description && descriptionId) || undefined
+        }
       />
       <div>
         <label htmlFor={inputId} className={styles["label"]}>

@@ -1,33 +1,71 @@
-import { ChoiceFieldGroupOption } from "../index.js";
+import type { ChoiceFieldGroupOption } from "../types.js";
 
-export const getLeafValues = (option: ChoiceFieldGroupOption): string[] =>
-  option.children?.length
-    ? option.children.flatMap(getLeafValues)
-    : [option.value];
+export interface ChoiceFieldGroupOptionState extends ChoiceFieldGroupOption {
+  checked: boolean;
+  indeterminate: boolean;
+  children?: ChoiceFieldGroupOptionState[];
+}
 
-export const withSelectionState = (
+const getSelectableLeafValues = (option: ChoiceFieldGroupOption): string[] => {
+  if (option.disabled) return [];
+  if (!option.children?.length) return [option.value];
+  return option.children.flatMap(getSelectableLeafValues);
+};
+
+export const toggleLeafValues = (
+  selectedValues: string[],
+  option: ChoiceFieldGroupOptionState,
+): string[] => {
+  const leafValues = new Set(getSelectableLeafValues(option));
+  if (option.checked) {
+    return selectedValues.filter((value) => !leafValues.has(value));
+  }
+  return [...new Set([...selectedValues, ...leafValues])];
+};
+
+const isEveryChildDisabled = (children: ChoiceFieldGroupOptionState[]) =>
+  children.every((child) => child.disabled);
+
+const isEverySelectableChildChecked = (
+  children: ChoiceFieldGroupOptionState[],
+) =>
+  children.some((child) => child.checked) &&
+  children.every((child) => child.checked || child.disabled);
+
+const hasCheckedDescendant = (children: ChoiceFieldGroupOptionState[]) =>
+  children.some((child) => child.checked || child.indeterminate);
+
+export const resolveOptionStates = (
   options: ChoiceFieldGroupOption[],
   selectedValues: string[],
-): ChoiceFieldGroupOption[] => {
+): ChoiceFieldGroupOptionState[] => {
   const selected = new Set(selectedValues);
-  const calculate = (node: ChoiceFieldGroupOption): ChoiceFieldGroupOption => {
-    if (!node.children?.length) {
+
+  const resolve = (
+    option: ChoiceFieldGroupOption,
+    isParentDisabled = false,
+  ): ChoiceFieldGroupOptionState => {
+    const disabled = Boolean(option.disabled) || isParentDisabled;
+    if (!option.children?.length) {
       return {
-        ...node,
-        checked: selected.has(node.value),
+        ...option,
+        children: undefined,
+        disabled,
+        checked: selected.has(option.value),
         indeterminate: false,
       };
     }
-    const children = node.children.map(calculate);
-    const checked = children.every((child) => child.checked);
+
+    const children = option.children.map((child) => resolve(child, disabled));
+    const checked = isEverySelectableChildChecked(children);
     return {
-      ...node,
+      ...option,
       children,
+      disabled: disabled || isEveryChildDisabled(children),
       checked,
-      indeterminate:
-        !checked &&
-        children.some((child) => child.checked || child.indeterminate),
+      indeterminate: !checked && hasCheckedDescendant(children),
     };
   };
-  return options.map(calculate);
+
+  return options.map((option) => resolve(option));
 };

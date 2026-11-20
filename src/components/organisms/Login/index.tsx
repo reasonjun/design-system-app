@@ -28,6 +28,11 @@ export interface LoginProps {
   findPasswordHref: string;
 }
 
+const getSubmitLabel = (isLoading: boolean) => {
+  if (isLoading) return "처리 중...";
+  return "로그인";
+};
+
 /**
  * 로그인 폼 organism 컴포넌트
  *
@@ -48,7 +53,7 @@ export const Login = ({
     <div className={styles["action-container"]}>
       <ButtonGroup alignment="stack">
         <Button type="submit" disabled={isLoading}>
-          {isLoading ? "처리 중..." : "로그인"}
+          {getSubmitLabel(isLoading)}
         </Button>
         <Button type="button" variant="secondary" onClick={onSignUpClick}>
           회원가입

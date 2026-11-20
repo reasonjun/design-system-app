@@ -5,7 +5,8 @@
   gap: #{variables.$space-100};
 
   &:has(input:focus-visible) {
-    outline: 2px dashed lightgray;
+    outline: #{variables.$stroke-focus-ring} dashed
+      #{variables.$color-border-default-tertiary};
     outline-offset: 2px;
   }
 
@@ -15,7 +16,7 @@
 
   .label {
     color: #{variables.$color-text-default-primary};
-    user-select: none;
+    cursor: pointer;
   }
 
   .description {
@@ -25,5 +26,9 @@
   input:disabled + div .label,
   input:disabled + div .description {
     color: #{variables.$color-text-disabled-primary};
+  }
+
+  input:disabled + div .label {
+    cursor: not-allowed;
   }
 }

@@ -1,4 +1,5 @@
-@use '../../../style-dictionary-dist/variables';
+@use "../../../style-dictionary-dist/variables";
+@use "../../../styles/a11y";
 
 .module {
   display: flex;
@@ -8,25 +9,12 @@
   .label {
     color: #{variables.$color-text-default-primary};
 
-    .required {
-      color: #{variables.$color-text-danger-default};
-      margin-left: #{variables.$space-100};
-    }
-
     &.disabled {
       color: #{variables.$color-text-disabled-primary};
     }
   }
 
-  .srOnly {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+  .visually-hidden {
+    @include a11y.visually-hidden;
   }
 }

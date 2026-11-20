@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { TextField } from ".";
 
-const meta: Meta<typeof TextField> = {
+const meta = {
   title: "Molecule/TextField",
   component: TextField,
   tags: ["autodocs"],
@@ -19,7 +20,7 @@ const meta: Meta<typeof TextField> = {
     required: {
       control: "boolean",
     },
-    hideLabel: {
+    isLabelHidden: {
       control: "boolean",
     },
   },
@@ -27,9 +28,9 @@ const meta: Meta<typeof TextField> = {
     type: "text",
     disabled: false,
     required: false,
-    hideLabel: false,
+    isLabelHidden: false,
   },
-};
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -66,6 +67,11 @@ export const Required: Story = {
     type: "password",
     required: true,
   },
+  play: async ({ canvas }) => {
+    const input = canvas.getByLabelText(/Password/);
+    await expect(input).toBeRequired();
+    await expect(input).toHaveAccessibleName("Password");
+  },
 };
 
 export const Disabled: Story = {
@@ -81,7 +87,12 @@ export const WithHiddenLabel: Story = {
   args: {
     label: "Search",
     placeholder: "Search...",
-    hideLabel: true,
+    isLabelHidden: true,
+  },
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvas.getByRole("textbox")).toHaveAccessibleName("Search");
+    const label = canvasElement.querySelector("label") as HTMLElement;
+    await expect(label.getBoundingClientRect().width).toBeLessThanOrEqual(1);
   },
 };
 

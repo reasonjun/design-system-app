@@ -6,12 +6,12 @@
   gap: #{variables.$space-300};
   border: none;
 
-  &.disabled {
-    opacity: 0.6;
+  &.disabled .legend,
+  &.disabled .description {
+    color: #{variables.$color-text-disabled-primary};
   }
 
-  &.error .legend,
-  &.error .required {
+  &.error .legend {
     color: #{variables.$color-text-danger-default};
   }
 
@@ -30,11 +30,6 @@
     margin-bottom: #{variables.$space-100};
   }
 
-  .required {
-    color: #{variables.$color-text-danger-default};
-    margin-left: #{variables.$space-100};
-  }
-
   .description {
     color: #{variables.$color-text-default-secondary};
     margin: #{variables.$space-0};
@@ -50,9 +45,8 @@
     flex-direction: column;
   }
 
-  .errorMessage {
-    color: #{variables.$color-text-danger-default};
-    margin-top: #{variables.$space-100};
-    font-size: 0.875rem;
+  .children {
+    padding-left: #{variables.$space-600};
+    margin-top: #{variables.$space-200};
   }
 }
